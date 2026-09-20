@@ -1,0 +1,180 @@
+# name|domain|category|relevance|hq|hints   (hints: gh: lever: ashby: sr: wd:host;tenant;site li: url:)
+# ---------- Humanoids & general-purpose robots ----------
+Figure AI|figure.ai|humanoid|100|San Jose, CA|gh:figureai
+1X Technologies|1x.tech|humanoid|97|Palo Alto, CA / Oslo|ashby:1x
+Apptronik|apptronik.com|humanoid|96|Austin, TX|
+Agility Robotics|agilityrobotics.com|humanoid|97|Salem, OR / Pittsburgh|
+Boston Dynamics|bostondynamics.com|humanoid|100|Waltham, MA|wd:bostondynamics.wd1.myworkdayjobs.com;bostondynamics;Boston_Dynamics
+Persona AI|personainc.ai|humanoid|80|Houston, TX|
+The Bot Company|thebotcompany.ai|humanoid|85|San Francisco|
+Kind Humanoid|kindhumanoid.com|humanoid|65|Palo Alto|
+Foundation Robotics|foundation.bot|humanoid|75|San Francisco|
+Sunday Robotics|sunday.ai|humanoid|85|Palo Alto|
+Weave Robotics|weaverobots.com|humanoid|80|Sunnyvale|
+K-Scale Labs|kscale.dev|humanoid|75|Palo Alto|
+Cartwheel Robotics|cartwheelrobotics.com|humanoid|65|Denver|
+Reflex Robotics|reflexrobotics.com|humanoid|65|New York|
+Proception|proception.ai|humanoid|65|Palo Alto|
+Tesla|tesla.com|bigtech|95|Austin, TX|li:15564 url:https://www.tesla.com/careers/search/?query=robotics
+Hyundai Motor Group Boston Dynamics AI Institute|theaiinstitute.com|research_lab|95|Cambridge, MA|
+# ---------- Robot foundation models / embodied AI ----------
+Physical Intelligence|physicalintelligence.company|robot_ml|100|San Francisco|ashby:physicalintelligence
+Skild AI|skild.ai|robot_ml|100|Pittsburgh|
+Generalist AI|generalistai.com|robot_ml|90|San Francisco|
+Dyna Robotics|dyna.co|robot_ml|90|Redwood City|
+Genesis AI|genesis-ai.com|robot_ml|88|Palo Alto / Paris|
+Hillbot|hillbot.ai|robot_ml|75|San Diego|
+Field AI|fieldai.com|robot_ml|92|Mission Viejo, CA|
+Covariant|covariant.ai|robot_ml|75|Emeryville, CA|
+Intrinsic|intrinsic.ai|robot_ml|95|Mountain View|
+Ambi Robotics|ambirobotics.com|logistics|82|Berkeley|
+Dexterity|dexterity.ai|logistics|88|Redwood City|
+Chef Robotics|chefrobotics.ai|robot_ml|78|San Francisco|
+RoboForce|roboforce.ai|robot_ml|70|Milpitas|
+Robust AI|robust.ai|robot_ml|78|San Carlos|
+Embodied Intelligence|embodied-intelligence.com|robot_ml|60|Berkeley|
+Toyota Research Institute|tri.global|research_lab|100|Los Altos / Cambridge|lever:tri
+Hugging Face|huggingface.co|ai_lab|75|New York / Paris|
+World Labs|worldlabs.ai|ai_lab|82|San Francisco|
+Luma AI|lumalabs.ai|ai_lab|70|Palo Alto|
+Wayve|wayve.ai|av|95|London / SF|ashby:wayve
+OpenAI|openai.com|ai_lab|85|San Francisco|ashby:openai
+Anthropic|anthropic.com|ai_lab|70|San Francisco|gh:anthropic
+Google DeepMind|deepmind.google|ai_lab|95|London / Mountain View|li:1441
+xAI|x.ai|ai_lab|70|Palo Alto|
+Reka AI|reka.ai|ai_lab|50|San Francisco|
+Liquid AI|liquid.ai|ai_lab|60|Cambridge, MA|
+Runway|runwayml.com|ai_lab|55|New York|
+Allen Institute for AI|allenai.org|research_lab|70|Seattle|
+Samsung Research America|sra.samsung.com|research_lab|65|Mountain View|
+Bosch Research|bosch.com|research_lab|75|Sunnyvale / Renningen|sr:BoschGroup
+Honda Research Institute|honda-ri.com|research_lab|85|San Jose|
+Microsoft Research|microsoft.com|research_lab|80|Redmond|li:1035
+NVIDIA|nvidia.com|bigtech|100|Santa Clara|wd:nvidia.wd5.myworkdayjobs.com;nvidia;NVIDIAExternalCareerSite
+Meta|meta.com|bigtech|80|Menlo Park|li:10667
+Google|google.com|bigtech|90|Mountain View|li:1441
+Microsoft|microsoft.com|bigtech|80|Redmond|li:1035
+Uber|uber.com|bigtech|85|San Francisco|li:1815218
+DoorDash|doordash.com|bigtech|80|San Francisco|gh:doordashusa
+Lyft|lyft.com|mobility|60|San Francisco|
+Adobe|adobe.com|bigtech|55|San Jose|
+Qualcomm|qualcomm.com|sensors_chips|75|San Diego|
+Intel|intel.com|sensors_chips|70|Santa Clara|wd:intel.wd1.myworkdayjobs.com;intel;External
+AMD|amd.com|sensors_chips|55|Santa Clara|
+IBM Research|research.ibm.com|research_lab|55|Yorktown Heights|
+Snap|snap.com|bigtech|50|Santa Monica|
+Unity Technologies|unity.com|simulation_tools|55|San Francisco|
+Epic Games|epicgames.com|simulation_tools|50|Cary, NC|
+MathWorks|mathworks.com|simulation_tools|60|Natick, MA|
+Ansys|ansys.com|simulation_tools|50|Canonsburg, PA|
+Palantir|palantir.com|defense|45|Denver|
+Scale AI|scale.com|perception|85|San Francisco|gh:scaleai
+# ---------- Autonomous vehicles ----------
+Waymo|waymo.com|av|100|Mountain View|gh:waymo
+Zoox|zoox.com|av|100|Foster City|lever:zoox
+Nuro|nuro.ai|av|98|Mountain View|gh:nuro
+Aurora Innovation|aurora.tech|av|97|Pittsburgh / Mountain View|
+Kodiak Robotics|kodiak.ai|av|90|Mountain View|
+Plus|plus.ai|av|82|Santa Clara|
+Waabi|waabi.ai|av|92|Toronto / SF|
+Stack AV|stackav.com|av|88|Pittsburgh|
+Bot Auto|bot.auto|av|82|Houston|
+Gatik|gatik.ai|av|88|Mountain View|
+Motional|motional.com|av|90|Boston / Pittsburgh|
+May Mobility|maymobility.com|av|88|Ann Arbor|
+Applied Intuition|appliedintuition.com|simulation_tools|97|Mountain View|
+Helm.ai|helm.ai|av|85|Redwood City|
+comma.ai|comma.ai|av|80|San Diego|
+Pony.ai|pony.ai|av|80|Fremont / Guangzhou|
+WeRide|weride.ai|av|75|San Jose / Guangzhou|
+Mobileye|mobileye.com|av|90|Jerusalem / Detroit|
+Ambarella|ambarella.com|sensors_chips|65|Santa Clara|
+Torc Robotics|torc.ai|av|90|Blacksburg, VA / Austin|
+Einride|einride.tech|av|70|Stockholm / Austin|
+Volvo Autonomous Solutions|volvoautonomoussolutions.com|av|70|Gothenburg / Mountain View|
+Daimler Truck|daimlertruck.com|av|55|Stuttgart / Portland|
+Latitude AI|lat.ai|av|88|Pittsburgh|
+General Motors|gm.com|mobility|65|Detroit / Mountain View|
+Rivian|rivian.com|mobility|82|Irvine / Palo Alto|
+Lucid Motors|lucidmotors.com|mobility|65|Newark, CA|
+Woven by Toyota|woven.toyota|av|90|Tokyo / Palo Alto|
+Mercedes-Benz Research & Development North America|mbrdna.com|av|70|Sunnyvale|
+Aptiv|aptiv.com|av|65|Dublin / Troy, MI|
+Bosch|bosch.com|industrial|75|Stuttgart / Sunnyvale|sr:BoschGroup
+Luminar|luminartech.com|sensors_chips|75|Orlando / Palo Alto|
+Aeva|aeva.com|sensors_chips|75|Mountain View|
+Ouster|ouster.io|sensors_chips|78|San Francisco|
+Seyond|seyond.com|sensors_chips|55|Sunnyvale|
+Cepton|cepton.com|sensors_chips|55|San Jose|
+Serve Robotics|serverobotics.com|delivery|85|Redwood City|
+Starship Technologies|starship.xyz|delivery|80|San Francisco / Tallinn|
+Coco Robotics|cocodelivery.com|delivery|75|Los Angeles|
+Cartken|cartken.com|delivery|80|Oakland|
+Avride|avride.ai|av|85|Austin|
+Tensor|tensor.auto|av|70|San Jose|
+Nauto|nauto.com|perception|55|Sunnyvale|
+Netradyne|netradyne.com|perception|55|San Diego|
+Outrider|outrider.ai|av|85|Golden, CO|
+Forterra|forterra.com|defense|85|Clarksburg, MD|
+Oshkosh Corporation|oshkoshcorp.com|industrial|55|Oshkosh, WI / Pittsburgh|
+Pronto.ai|pronto.ai|av|70|San Francisco|
+SafeAI|safeai.ai|av|70|Milpitas|
+Polymath Robotics|polymathrobotics.com|av|70|San Francisco|
+Teleo|teleo.ai|av|72|Palo Alto|
+Built Robotics|builtrobotics.com|construction|82|San Francisco|
+Bear Robotics|bearrobotics.ai|consumer|65|Redwood City|
+ISEE|isee.ai|av|80|Cambridge, MA|
+Third Wave Automation|thirdwave.ai|logistics|80|Union City, CA|
+Cyngn|cyngn.com|av|65|Menlo Park|
+Parallel Domain|paralleldomain.com|simulation_tools|75|San Francisco|
+Mapless AI|maplessai.com|av|65|Pittsburgh|
+Carnegie Robotics|carnegierobotics.com|industrial|80|Pittsburgh|
+Zipline|flyzipline.com|drone_aero|95|South San Francisco|
+Skydio|skydio.com|drone_aero|97|San Mateo|ashby:skydio
+Wing|wing.com|drone_aero|90|Palo Alto|
+Anduril Industries|anduril.com|defense|97|Costa Mesa|gh:andurilindustries
+Shield AI|shield.ai|defense|95|San Diego|
+Epirus|epirusinc.com|defense|55|Torrance|
+Saronic|saronic.com|marine|85|Austin|
+Neros|neros.tech|drone_aero|70|El Segundo|
+Red Cat Holdings|redcatholdings.com|drone_aero|55|San Juan / Salt Lake City|
+Auterion|auterion.com|drone_aero|80|Arlington, VA / Zurich|
+Wisk Aero|wisk.aero|drone_aero|85|Mountain View|
+Joby Aviation|jobyaviation.com|drone_aero|75|Santa Cruz|
+Archer Aviation|archer.com|drone_aero|65|San Jose|
+Beta Technologies|beta.team|drone_aero|60|Burlington, VT|
+Reliable Robotics|reliable.co|drone_aero|85|Mountain View|
+Merlin Labs|merlinlabs.com|drone_aero|85|Boston|
+Pyka|flypyka.com|drone_aero|75|Alameda|
+Elroy Air|elroyair.com|drone_aero|70|South San Francisco|
+Matternet|mttr.net|drone_aero|60|Mountain View|
+DroneDeploy|dronedeploy.com|perception|55|San Francisco|
+Exyn Technologies|exyn.com|drone_aero|80|Philadelphia|
+Near Earth Autonomy|nearearth.aero|drone_aero|85|Pittsburgh|
+Boeing|boeing.com|drone_aero|55|Arlington, VA|
+Lockheed Martin|lockheedmartin.com|defense|60|Bethesda|
+RTX|rtx.com|defense|55|Arlington, VA|
+Northrop Grumman|northropgrumman.com|defense|60|Falls Church|
+General Atomics|ga.com|defense|55|San Diego|
+L3Harris|l3harris.com|defense|50|Melbourne, FL|
+BAE Systems|baesystems.com|defense|50|Falls Church|
+Kratos Defense|kratosdefense.com|defense|50|San Diego|
+AeroVironment|avinc.com|drone_aero|75|Arlington, VA|
+Sikorsky|lockheedmartin.com/sikorsky|drone_aero|60|Stratford, CT|
+Honeywell|honeywell.com|industrial|50|Charlotte|
+Draper|draper.com|research_lab|80|Cambridge, MA|
+Johns Hopkins APL|jhuapl.edu|research_lab|75|Laurel, MD|
+MIT Lincoln Laboratory|ll.mit.edu|research_lab|75|Lexington, MA|
+Sandia National Laboratories|sandia.gov|research_lab|60|Albuquerque|
+Los Alamos National Laboratory|lanl.gov|research_lab|50|Los Alamos|
+Southwest Research Institute|swri.org|research_lab|75|San Antonio|
+Overland AI|overland.ai|defense|85|Seattle|
+Castelion|castelion.com|defense|45|El Segundo|
+Hermeus|hermeus.com|drone_aero|50|Atlanta|
+Mach Industries|machindustries.com|defense|60|Huntington Beach|
+Vannevar Labs|vannevarlabs.com|defense|55|Palo Alto|
+Rebellion Defense|rebelliondefense.com|defense|50|Washington, DC|
+Firestorm Labs|firestorm.us|drone_aero|60|San Diego|
+CHAOS Industries|chaosindustries.com|defense|55|Los Angeles|
+Divergent Technologies|divergent3d.com|industrial|50|Torrance|
+Scientific Systems Company|ssci.com|defense|70|Woburn, MA|

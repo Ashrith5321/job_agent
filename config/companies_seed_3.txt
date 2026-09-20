@@ -1,0 +1,260 @@
+# ---------- US additions: perception / AV / autonomy / research / defense-autonomy ----------
+Kitware|kitware.com|perception|85|Clifton Park, NY / Carrboro, NC|
+Neya Systems|neyarobotics.com|av|85|Warrendale, PA|
+Aurora Flight Sciences|aurora.aero|drone_aero|85|Manassas, VA / Cambridge, MA|
+Leidos|leidos.com|defense|55|Reston, VA|
+Textron Systems|textronsystems.com|defense|55|Hunt Valley, MD|
+Sierra Nevada Corporation|sncorp.com|defense|55|Sparks, NV|
+MITRE|mitre.org|research_lab|60|McLean, VA / Bedford, MA|
+Charles River Analytics|cra.com|research_lab|70|Cambridge, MA|
+SRI International|sri.com|research_lab|75|Menlo Park, CA|
+Oak Ridge National Laboratory|ornl.gov|research_lab|60|Oak Ridge, TN|
+Pacific Northwest National Laboratory|pnnl.gov|research_lab|55|Richland, WA|
+Lawrence Livermore National Laboratory|llnl.gov|research_lab|55|Livermore, CA|
+Idaho National Laboratory|inl.gov|research_lab|55|Idaho Falls, ID|
+Honeybee Robotics|honeybeerobotics.com|space|75|Altadena, CA / Longmont, CO|
+Blue Water Autonomy|bluewaterautonomy.com|marine|75|Boston, MA|
+BlueHalo|bluehalo.com|defense|55|Arlington, VA|
+Hadrian|hadrian.co|industrial|55|Torrance, CA|
+Skyryse|skyryse.com|drone_aero|70|El Segundo, CA|
+Neuralink|neuralink.com|medical|70|Fremont, CA / Austin, TX|
+EndoQuest Robotics|endoquestrobotics.com|medical|55|Houston, TX|
+Dexai Robotics|dexai.com|consumer|70|Boston, MA|
+Simbe Robotics|simberobotics.com|consumer|65|San Francisco, CA|
+Badger Technologies|badger-technologies.com|consumer|55|Nicholasville, KY|
+Agtonomy|agtonomy.com|agri|75|South San Francisco, CA|
+Sabanto|sabantoag.com|agri|65|Itasca, IL|
+GUSS Automation|gussag.com|agri|60|Kingsburg, CA|
+Harvest CROO Robotics|harvestcroo.com|agri|55|Plant City, FL|
+Owl Autonomous Imaging|owlai.co|sensors_chips|65|Fairport, NY|
+Nodar|nodarsensor.com|sensors_chips|70|Somerville, MA|
+Light|light.co|sensors_chips|60|Redwood City, CA|
+Anyware Robotics|anywarerobotics.com|logistics|70|Fremont, CA|
+Lucid Bots|lucidbots.com|drone_aero|55|Charlotte, NC|
+Ascent AeroSystems|ascentaerosystems.com|drone_aero|55|Wilmington, MA|
+Sentien Robotics|sentienrobotics.com|drone_aero|55|Dulles, VA|
+Dragonfly Robotics|dragonflyrobotics.com|drone_aero|55|Boulder, CO|
+Bear Robotics|bearrobotics.ai|consumer|55|Redwood City, CA|
+Miso Robotics|misorobotics.com|consumer|55|Pasadena, CA|
+Relay Robotics|relayrobotics.com|consumer|50|Campbell, CA|
+Knightscope|knightscope.com|consumer|45|Mountain View, CA|
+Cobalt AI|cobaltai.com|consumer|50|San Mateo, CA|
+Ava Robotics|avarobotics.com|consumer|50|Cambridge, MA|
+Richtech Robotics|richtechrobotics.com|consumer|45|Las Vegas, NV|
+Botrista|botrista.io|consumer|45|San Carlos, CA|
+Hyphen|hyphen.co|consumer|50|San Jose, CA|
+Lyft|lyft.com|mobility|55|San Francisco, CA|
+Ford Motor Company|ford.com|mobility|55|Dearborn, MI|
+Cruise|getcruise.com|av|45|San Francisco, CA|
+Toyota Motor North America|toyota.com|mobility|45|Plano, TX|
+Amazon Robotics|amazon.jobs|logistics|90|North Reading, MA|
+Arm|arm.com|sensors_chips|45|Austin, TX / San Jose, CA|
+Adobe|adobe.com|bigtech|55|San Jose, CA|
+Snap|snap.com|bigtech|50|Santa Monica, CA|
+Palantir|palantir.com|defense|45|Denver, CO|
+Databricks|databricks.com|ai_lab|40|San Francisco, CA|
+Lockheed Martin|lockheedmartin.com|defense|60|Bethesda, MD|
+Northrop Grumman|northropgrumman.com|defense|60|Falls Church, VA|
+RTX|rtx.com|defense|55|Arlington, VA|
+Boeing|boeing.com|drone_aero|55|Arlington, VA|
+General Atomics|ga.com|defense|55|San Diego, CA|
+L3Harris|l3harris.com|defense|50|Melbourne, FL|
+BAE Systems Inc|baesystems.com|defense|50|Falls Church, VA|
+Kratos Defense|kratosdefense.com|defense|50|San Diego, CA|
+Honeywell|honeywell.com|industrial|50|Charlotte, NC|
+Sandia National Laboratories|sandia.gov|research_lab|60|Albuquerque, NM|
+Los Alamos National Laboratory|lanl.gov|research_lab|50|Los Alamos, NM|
+Epirus|epirusinc.com|defense|50|Torrance, CA|
+Neros|neros.tech|drone_aero|65|El Segundo, CA|
+Red Cat Holdings|redcatholdings.com|drone_aero|55|San Juan, PR / Salt Lake City, UT|
+Castelion|castelion.com|defense|45|El Segundo, CA|
+Hermeus|hermeus.com|drone_aero|50|Atlanta, GA|
+Mach Industries|machindustries.com|defense|60|Huntington Beach, CA|
+Vannevar Labs|vannevarlabs.com|defense|55|Palo Alto, CA|
+Rebellion Defense|rebelliondefense.com|defense|50|Washington, DC|
+Firestorm Labs|firestorm.us|drone_aero|60|San Diego, CA|
+CHAOS Industries|chaosindustries.com|defense|55|Los Angeles, CA|
+Divergent Technologies|divergent3d.com|industrial|50|Torrance, CA|
+Sikorsky|lockheedmartin.com|drone_aero|60|Stratford, CT|
+Relativity Space|relativityspace.com|space|50|Long Beach, CA|
+Firefly Aerospace|fireflyspace.com|space|50|Cedar Park, TX|
+Impulse Space|impulsespace.com|space|55|Redondo Beach, CA|
+Varda Space Industries|varda.com|space|50|El Segundo, CA|
+Apex Space|apexspace.com|space|50|Los Angeles, CA|
+K2 Space|k2space.com|space|45|Torrance, CA|
+Stoke Space|stokespace.com|space|50|Kent, WA|
+Planet Labs|planet.com|perception|55|San Francisco, CA|
+Maxar|maxar.com|perception|55|Westminster, CO|
+Astranis|astranis.com|space|45|San Francisco, CA|
+Orbit Fab|orbitfab.com|space|50|Lafayette, CO|
+NASA|nasa.gov|research_lab|70|Washington, DC|
+Redwire|redwirespace.com|space|55|Jacksonville, FL|
+Vast|vastspace.com|space|45|Long Beach, CA|
+Sierra Space|sierraspace.com|space|50|Louisville, CO|
+True Anomaly|trueanomaly.space|space|55|Denver, CO|
+Turion Space|turionspace.com|space|50|Irvine, CA|
+Rocket Lab|rocketlabusa.com|space|55|Long Beach, CA|
+Blue Origin|blueorigin.com|space|65|Kent, WA|
+ABB Robotics|abb.com|industrial|65|Auburn Hills, MI|
+KUKA|kuka.com|industrial|60|Shelby Township, MI|
+FANUC America|fanucamerica.com|industrial|55|Rochester Hills, MI|
+Yaskawa Motoman|motoman.com|industrial|50|Miamisburg, OH|
+Teradyne Robotics|teradyne.com|industrial|55|North Reading, MA|
+Denso Robotics|densorobotics.com|industrial|45|Long Beach, CA|
+Kawasaki Robotics|kawasakirobotics.com|industrial|45|Wixom, MI|
+Omron Automation|automation.omron.com|industrial|50|Hoffman Estates, IL|
+Rockwell Automation|rockwellautomation.com|industrial|55|Milwaukee, WI|
+Siemens|siemens.com|industrial|55|Princeton, NJ|
+Vention|vention.io|industrial|50|Montreal / Berlin|
+Formic|formic.co|industrial|55|Chicago, IL|
+READY Robotics|ready-robotics.com|industrial|60|Columbus, OH|
+Bright Machines|brightmachines.com|industrial|65|San Francisco, CA|
+Flexiv|flexiv.com|industrial|70|Santa Clara, CA|
+Symbio Robotics|symb.io|industrial|70|Emeryville, CA|
+Construction Robotics|construction-robotics.com|construction|50|Victor, NY|
+Sarcos Technology and Robotics|sarcos.com|industrial|60|Salt Lake City, UT|
+Ekso Bionics|eksobionics.com|medical|50|San Rafael, CA|
+ReWalk Robotics|rewalk.com|medical|40|Marlborough, MA|
+Zimmer Biomet|zimmerbiomet.com|medical|45|Warsaw, IN|
+Globus Medical|globusmedical.com|medical|45|Audubon, PA|
+Stryker|stryker.com|medical|55|Kalamazoo, MI|
+Medtronic|medtronic.com|medical|55|Minneapolis, MN|
+Johnson & Johnson MedTech|jnj.com|medical|60|Santa Clara, CA|
+Monogram Technologies|monogramorthopaedics.com|medical|50|Austin, TX|
+Levita Magnetics|levita.com|medical|40|Redwood City, CA|
+Zebra Technologies|zebra.com|logistics|55|Lincolnshire, IL|
+inVia Robotics|inviarobotics.com|logistics|60|Westlake Village, CA|
+Corvus Robotics|corvus-robotics.com|logistics|65|Mountain View, CA|
+Gather AI|gather.ai|logistics|70|Pittsburgh, PA|
+Vecna Robotics|vecnarobotics.com|logistics|75|Waltham, MA|
+Seegrid|seegrid.com|logistics|75|Pittsburgh, PA|
+Locus Robotics|locusrobotics.com|logistics|82|Wilmington, MA|
+Symbotic|symbotic.com|logistics|82|Wilmington, MA|
+Berkshire Grey|berkshiregrey.com|logistics|75|Bedford, MA|
+Osaro|osaro.com|logistics|70|San Francisco, CA|
+Fox Robotics|foxrobotics.com|logistics|75|Austin, TX|
+Tutor Intelligence|tutorintelligence.com|logistics|60|Boston, MA|
+Third Wave Automation|thirdwave.ai|logistics|80|Union City, CA|
+Piaggio Fast Forward|piaggiofastforward.com|consumer|55|Boston, MA|
+Labrador Systems|labradorsystems.com|consumer|55|Calabasas, CA|
+Hello Robot|hello-robot.com|consumer|75|Martinez, CA|
+Matic|maticrobots.com|consumer|75|Mountain View, CA|
+iRobot|irobot.com|consumer|65|Bedford, MA|
+Greenzie|greenzie.com|consumer|55|Atlanta, GA|
+Electric Sheep Robotics|sheeprobotics.ai|consumer|65|San Francisco, CA|
+Scythe Robotics|scytherobotics.com|consumer|75|Longmont, CO|
+Cognex|cognex.com|perception|60|Natick, MA|
+Teledyne FLIR|flir.com|sensors_chips|55|Wilsonville, OR|
+Trimble|trimble.com|perception|55|Westminster, CO|
+FARO Technologies|faro.com|perception|45|Lake Mary, FL|
+Matterport|matterport.com|perception|50|Sunnyvale, CA|
+Magic Leap|magicleap.com|perception|55|Plantation, FL|
+Niantic Spatial|nianticspatial.com|perception|70|San Francisco, CA|
+Landing AI|landing.ai|perception|55|Palo Alto, CA|
+Overview AI|overview.ai|perception|50|Ann Arbor, MI|
+OmniVision|ovt.com|sensors_chips|35|Santa Clara, CA|
+Blaize|blaize.com|sensors_chips|40|El Dorado Hills, CA|
+Groq|groq.com|sensors_chips|40|Mountain View, CA|
+Cerebras|cerebras.ai|sensors_chips|40|Sunnyvale, CA|
+SambaNova Systems|sambanova.ai|sensors_chips|35|Palo Alto, CA|
+d-Matrix|d-matrix.ai|sensors_chips|35|Santa Clara, CA|
+Etched|etched.com|sensors_chips|35|San Jose, CA|
+Lightmatter|lightmatter.co|sensors_chips|35|Boston, MA|
+Kinara|kinara.ai|sensors_chips|40|Los Altos, CA|
+SiMa.ai|sima.ai|sensors_chips|50|San Jose, CA|
+Recogni|recogni.com|sensors_chips|55|San Jose, CA|
+Spartan Radar|spartanradar.com|sensors_chips|45|Los Alamitos, CA|
+Uhnder|uhnder.com|sensors_chips|45|Austin, TX|
+Echodyne|echodyne.com|sensors_chips|55|Kirkland, WA|
+Lumotive|lumotive.com|sensors_chips|50|Redmond, WA|
+Zendar|zendar.io|sensors_chips|55|Berkeley, CA|
+Intel RealSense|realsenseai.com|sensors_chips|65|Santa Clara, CA|
+Orbbec|orbbec.com|sensors_chips|55|Troy, MI|
+Stereolabs|stereolabs.com|sensors_chips|65|San Francisco, CA|
+DroneDeploy|dronedeploy.com|perception|55|San Francisco, CA|
+Rendered.ai|rendered.ai|simulation_tools|50|Bellevue, WA|
+Synthesis AI|synthesis.ai|simulation_tools|45|San Francisco, CA|
+InOrbit|inorbit.ai|simulation_tools|55|Mountain View, CA|
+Formant|formant.io|simulation_tools|60|San Francisco, CA|
+Viam|viam.com|simulation_tools|65|New York, NY|
+Roboto AI|roboto.ai|simulation_tools|60|Seattle, WA|
+Duality AI|duality.ai|simulation_tools|65|San Mateo, CA|
+Foxglove|foxglove.dev|simulation_tools|70|San Francisco, CA|
+Open Robotics|openrobotics.org|simulation_tools|75|Mountain View, CA|
+MathWorks|mathworks.com|simulation_tools|60|Natick, MA|
+Ansys|ansys.com|simulation_tools|50|Canonsburg, PA|
+Unity Technologies|unity.com|simulation_tools|55|San Francisco, CA|
+Epic Games|epicgames.com|simulation_tools|50|Cary, NC|
+IBM Research|research.ibm.com|research_lab|55|Yorktown Heights, NY|
+AMD|amd.com|sensors_chips|55|Santa Clara, CA|
+Intel|intel.com|sensors_chips|70|Santa Clara, CA|wd:intel.wd1.myworkdayjobs.com;intel;External
+Qualcomm|qualcomm.com|sensors_chips|75|San Diego, CA|
+Saildrone|saildrone.com|marine|70|Alameda, CA|
+Bedrock Ocean|bedrockocean.com|marine|55|San Francisco, CA|
+Terradepth|terradepth.com|marine|55|Austin, TX|
+Blue Robotics|bluerobotics.com|marine|55|Torrance, CA|
+HII Mission Technologies|hii.com|marine|50|Pocasset, MA|
+Gecko Robotics|geckorobotics.com|industrial|82|Pittsburgh, PA|
+Ghost Robotics|ghostrobotics.io|industrial|70|Philadelphia, PA|
+Draper|draper.com|research_lab|80|Cambridge, MA|
+Johns Hopkins APL|jhuapl.edu|research_lab|75|Laurel, MD|
+MIT Lincoln Laboratory|ll.mit.edu|research_lab|75|Lexington, MA|
+Southwest Research Institute|swri.org|research_lab|75|San Antonio, TX|
+Overland AI|overland.ai|defense|85|Seattle, WA|
+Scientific Systems Company|ssci.com|defense|70|Woburn, MA|
+Oshkosh Corporation|oshkoshcorp.com|industrial|55|Oshkosh, WI / Pittsburgh, PA|
+Netradyne|netradyne.com|perception|55|San Diego, CA|
+Nauto|nauto.com|perception|55|Sunnyvale, CA|
+Pronto.ai|pronto.ai|av|70|San Francisco, CA|
+SafeAI|safeai.ai|av|70|Milpitas, CA|
+Polymath Robotics|polymathrobotics.com|av|70|San Francisco, CA|
+Teleo|teleo.ai|av|72|Palo Alto, CA|
+Built Robotics|builtrobotics.com|construction|82|San Francisco, CA|
+ISEE|isee.ai|av|80|Cambridge, MA|
+Cyngn|cyngn.com|av|65|Menlo Park, CA|
+Mapless AI|maplessai.com|av|65|Pittsburgh, PA|
+Carnegie Robotics|carnegierobotics.com|industrial|80|Pittsburgh, PA|
+Parallel Domain|paralleldomain.com|simulation_tools|75|San Francisco, CA|
+AeroVironment|avinc.com|drone_aero|75|Arlington, VA|
+Auterion|auterion.com|drone_aero|80|Arlington, VA|
+Wisk Aero|wisk.aero|drone_aero|85|Mountain View, CA|
+Joby Aviation|jobyaviation.com|drone_aero|75|Santa Cruz, CA|
+Archer Aviation|archer.com|drone_aero|65|San Jose, CA|
+Beta Technologies|beta.team|drone_aero|60|Burlington, VT|
+Reliable Robotics|reliable.co|drone_aero|85|Mountain View, CA|
+Merlin Labs|merlinlabs.com|drone_aero|85|Boston, MA|
+Pyka|flypyka.com|drone_aero|75|Alameda, CA|
+Elroy Air|elroyair.com|drone_aero|70|South San Francisco, CA|
+Matternet|mttr.net|drone_aero|60|Mountain View, CA|
+Exyn Technologies|exyn.com|drone_aero|80|Philadelphia, PA|
+Near Earth Autonomy|nearearth.aero|drone_aero|85|Pittsburgh, PA|
+Astrobotic|astrobotic.com|space|85|Pittsburgh, PA|
+Intuitive Machines|intuitivemachines.com|space|65|Houston, TX|
+Motiv Space Systems|motivss.com|space|75|Pasadena, CA|
+GITAI|gitai.tech|space|85|Torrance, CA|
+NASA Jet Propulsion Laboratory|jpl.nasa.gov|research_lab|95|Pasadena, CA|
+Starfish Space|starfishspace.com|space|70|Seattle, WA|
+Lunar Outpost|lunaroutpost.com|space|75|Golden, CO|
+Venturi Astrolab|astrolab.space|space|75|Hawthorne, CA|
+Standard Bots|standardbots.com|industrial|82|Glen Cove, NY|
+Machina Labs|machinalabs.ai|industrial|75|Los Angeles, CA|
+Path Robotics|path-robotics.com|industrial|82|Columbus, OH|
+Rapid Robotics|rapidrobotics.com|industrial|65|San Francisco, CA|
+Realtime Robotics|rtr.ai|industrial|90|Boston, MA|
+Diligent Robotics|diligentrobots.com|medical|82|Austin, TX|
+Aigen|aigen.io|agri|70|Kirkland, WA|
+Carbon Robotics|carbonrobotics.com|agri|85|Seattle, WA|
+Burro|burro.ai|agri|75|Philadelphia, PA|
+farm-ng|farm-ng.com|agri|75|Watsonville, CA|
+Monarch Tractor|monarchtractor.com|agri|75|Livermore, CA|
+Verdant Robotics|verdantrobotics.com|agri|75|Hayward, CA|
+FarmWise|farmwise.io|agri|70|Salinas, CA|
+Advanced Farm Technologies|advanced.farm|agri|70|Davis, CA|
+Tortuga AgTech|tortugaagtech.com|agri|65|Denver, CO|
+John Deere|deere.com|agri|85|Moline, IL / Urbandale, IA|
+Blue River Technology|bluerivertechnology.com|agri|88|Santa Clara, CA|
+Caterpillar|caterpillar.com|construction|70|Irving, TX / Peoria, IL|
+Dusty Robotics|dustyrobotics.com|construction|80|Mountain View, CA|
+Canvas Construction|canvas.build|construction|75|San Francisco, CA|
+Civ Robotics|civrobotics.com|construction|65|San Francisco, CA|
+Advanced Construction Robotics|acrobotics.com|construction|60|Pittsburgh, PA|

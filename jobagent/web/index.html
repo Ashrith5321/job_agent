@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Robotics Internship Radar (US)</title>
+<style>
+:root{color-scheme:light;--bg:#f6f6f4;--surface:#fcfcfb;--surface-2:#f0efec;--border:#e2e1dc;--ink:#0b0b0b;--ink-2:#52514e;--ink-3:#8a8984;
+ --s1:#2a78d6;--s1-soft:#cde2fb;--good:#0ca30c;--warn:#fab219;--serious:#ec835a;--crit:#d03b3b;--star:#eda100;--shadow:0 1px 2px rgba(0,0,0,.06)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#111110;--surface:#1a1a19;--surface-2:#242422;--border:#33332f;--ink:#fff;--ink-2:#c3c2b7;--ink-3:#8d8c85;--s1:#3987e5;--s1-soft:#1c3a5e;--shadow:none}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111110;--surface:#1a1a19;--surface-2:#242422;--border:#33332f;--ink:#fff;--ink-2:#c3c2b7;--ink-3:#8d8c85;--s1:#3987e5;--s1-soft:#1c3a5e;--shadow:none}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:0 16px 40px}
+a{color:var(--s1);text-decoration:none}a:hover{text-decoration:underline}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:14px 0 10px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:5}
+h1{font-size:18px;margin:0;font-weight:650;letter-spacing:-.01em}h1 small{color:var(--ink-3);font-weight:400;margin-left:8px;font-size:12px}
+.tabs{display:flex;gap:2px;margin-left:auto}.tabs button{background:none;border:1px solid transparent;color:var(--ink-2);padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit}
+.tabs button.on{background:var(--surface);border-color:var(--border);color:var(--ink);box-shadow:var(--shadow)}
+.btn{background:var(--surface);border:1px solid var(--border);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit}.btn:hover{background:var(--surface-2)}
+.btn.primary{background:var(--s1);border-color:var(--s1);color:#fff}.btn.small{padding:2px 8px;font-size:12px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);cursor:pointer}.tile:hover{border-color:var(--ink-3)}
+.tile .n{font-size:26px;font-weight:650;letter-spacing:-.02em;line-height:1.1}.tile .l{color:var(--ink-2);font-size:12px;margin-top:4px}.tile.on{outline:2px solid var(--s1)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 12px}
+.filters input,.filters select{background:var(--surface);border:1px solid var(--border);color:var(--ink);padding:6px 10px;border-radius:8px;font:inherit}
+.filters input[type=search]{min-width:240px;flex:1}
+.count{color:var(--ink-3);font-size:12px;margin-left:auto}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);background:var(--surface-2);font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}tr:last-child td{border-bottom:0}tr.row:hover td{background:var(--surface-2)}
+.title{font-weight:600}.sub{color:var(--ink-2);font-size:12px;margin-top:2px}.mono{font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--border);color:var(--ink-2);margin-right:4px;white-space:nowrap}
+.pill.deg{background:var(--surface-2)}
+.pill.intern{background:var(--s1-soft);border-color:transparent;color:var(--ink)}
+.rel{display:inline-block;min-width:34px;text-align:center;font-weight:650;border-radius:6px;padding:1px 6px;font-size:12px;background:var(--surface-2)}
+.rel.hi{background:var(--s1);color:#fff}.rel.mid{background:var(--s1-soft)}
+.link{display:inline-flex;align-items:center;gap:4px;font-size:12px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.ok .dot{background:var(--good)}.bad .dot{background:var(--crit)}.unk .dot{background:var(--ink-3)}
+select.status{font:inherit;font-size:12px;padding:3px 6px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--ink)}
+.star{cursor:pointer;font-size:16px;color:var(--ink-3);background:none;border:0;padding:0 4px}.star.on{color:var(--star)}
+.exp{display:none}tr.open+.exp{display:table-row}.exp td{background:var(--surface-2);font-size:13px;white-space:pre-wrap;color:var(--ink-2)}
+.exp textarea{width:100%;min-height:50px;font:inherit;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:6px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--ink-2);font-size:12px;margin-bottom:8px}
+.chart{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin:6px 0 14px;box-shadow:var(--shadow)}
+.chart h3{margin:0 0 6px;font-size:13px;font-weight:600}.chart .hint{color:var(--ink-3);font-size:11px}
+.chart svg{width:100%;height:110px;display:block}.chart .bar{fill:var(--s1);rx:2}.chart .bar:hover{opacity:.8}.chart .axis{stroke:var(--border)}.chart text{fill:var(--ink-3);font-size:10px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:4px 8px;border-radius:6px;font-size:12px;display:none;z-index:9}
+.empty{padding:30px;text-align:center;color:var(--ink-3)}
+.co td{font-size:13px}.co input[type=number]{width:60px;font:inherit;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:2px 4px}
+.ev{font-size:13px}.ev .k{display:inline-block;width:110px;font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-3)}
+pre.digest{white-space:pre-wrap;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;font:13px/1.5 ui-monospace,Menlo,monospace}
+.pager{display:flex;gap:8px;align-items:center;justify-content:center;margin:12px 0}
+.tw{overflow-x:auto}.small{font-size:12px;color:var(--ink-3)}
+@media (max-width:700px){td.hide,th.hide{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Robotics Internship Radar <span class="pill">US only</span> <small id="lastrun">loading…</small></h1>
+  <div class="tabs"><button data-tab="jobs" class="on">Jobs</button><button data-tab="companies">Companies</button><button data-tab="activity">Activity</button><button data-tab="digest">Digest</button></div>
+  <button class="btn" id="scrapeBtn" title="Run a scrape now in the background">Scrape now</button>
+</header>
+
+<section id="tab-jobs">
+  <div class="tiles" id="tiles"></div>
+  <div class="chart" id="chart"></div>
+  <div class="filters">
+    <input type="search" id="q" placeholder="Search title, company, location, description…">
+    <select id="kind"><option value="intern">Internships / co-ops</option><option value="all">Everything stored</option></select>
+    <select id="degree"><option value="">Any degree level</option><option value="bs">Undergrad (BS)</option><option value="ms">Masters (MS)</option><option value="phd">PhD</option><option value="any">Unspecified</option></select>
+    <select id="status"><option value="open">Open</option><option value="closed">Closed</option><option value="all">Open + closed</option></select>
+    <select id="us"><option value="any">Any application status</option><option value="not_applied">Not applied</option><option value="applied">Applied / in process</option><option value="starred">Starred / interested</option><option value="ignored">Ignored</option></select>
+    <select id="cat"><option value="">All categories</option></select>
+    <select id="minrel"><option value="0">Any relevance</option><option value="30" selected>Relevance ≥ 30</option><option value="50">Relevance ≥ 50</option><option value="70">Relevance ≥ 70</option></select>
+    <input type="text" id="loc" placeholder="Location contains…" style="width:150px">
+    <select id="sort"><option value="relevance">Sort: relevance</option><option value="newest">Sort: newest found</option><option value="posted">Sort: date posted</option><option value="company">Sort: company</option><option value="degree">Sort: degree level</option></select>
+    <label class="small"><input type="checkbox" id="broken"> broken links only</label>
+    <a class="btn small" id="csv" href="#" title="Download current view as CSV">CSV</a>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="tw"><table id="jobs"><thead><tr><th style="width:26px"></th><th>Role</th><th class="hide">Location</th><th class="hide">Posted / found</th><th>Rel.</th><th>Degree</th><th>Link</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+  <div class="pager" id="pager"></div>
+</section>
+
+<section id="tab-companies" hidden>
+  <div class="filters">
+    <input type="search" id="cq" placeholder="Search companies…">
+    <select id="cactive"><option value="1">Active (tracked)</option><option value="0">Inactive / candidates</option><option value="all">All</option></select>
+    <select id="cstatus"><option value="">Any status</option><option value="error">Scrape errors</option><option value="nosource">No job source found</option></select>
+    <span class="count" id="ccount"></span>
+  </div>
+  <div class="tw"><table id="cos" class="co"><thead><tr><th>Company</th><th class="hide">Category</th><th>Source</th><th>Open interns</th><th class="hide">Open (all)</th><th>Applied</th><th>Relevance</th><th class="hide">Last scrape</th><th>Tracked</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="tab-activity" hidden><div id="events"></div></section>
+<section id="tab-digest" hidden><pre class="digest" id="digest"></pre></section>
+<div class="tip" id="tip"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const api=(p,o)=>fetch(p,o).then(r=>r.json());
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ago=iso=>{if(!iso)return '—';const d=(Date.now()-Date.parse(iso))/1000;if(d<3600)return Math.max(1,Math.round(d/60))+'m ago';if(d<86400)return Math.round(d/3600)+'h ago';return Math.round(d/86400)+'d ago'};
+const degLabel=d=>({'bs':'BS','ms':'MS','phd':'PhD','bs/ms':'BS/MS','ms/phd':'MS/PhD','bs/ms/phd':'BS/MS/PhD','bs/phd':'BS/PhD','any':'—'}[d]||d||'—');
+const STATUSES=[['none','—'],['interested','Interested'],['applied','Applied'],['interviewing','Interviewing'],['offer','Offer'],['rejected','Rejected'],['ignored','Ignore']];
+let page=0, PAGE=100, tileFilter=null;
+
+$$('.tabs button').forEach(b=>b.onclick=()=>{ $$('.tabs button').forEach(x=>x.classList.toggle('on',x===b)); $$('section').forEach(s=>s.hidden=s.id!=='tab-'+b.dataset.tab);
+  if(b.dataset.tab==='companies')loadCompanies(); if(b.dataset.tab==='activity')loadEvents(); if(b.dataset.tab==='digest')api('/api/digest').then(d=>$('#digest').textContent=d.text||'No digest yet — run a scrape.'); });
+
+async function loadSummary(){
+  const s=await api('/api/summary'); const k=s.kpi, lr=s.last_run;
+  $('#lastrun').textContent = lr ? `last scrape ${ago(lr.finished_at||lr.started_at)} · ${lr.companies_ok}/${lr.companies_total} companies ok · +${lr.jobs_new} new` + (s.scraping?' · scraping now…':'') : 'no scrape yet';
+  $('#scrapeBtn').disabled=s.scraping; $('#scrapeBtn').textContent=s.scraping?'Scraping…':'Scrape now';
+  const tiles=[['open_intern','Open internships',{kind:'intern',status:'open',us:'any',minrel:'0'}],['new_36h','New in last 36h',{kind:'newgrad',status:'open',since:1}],
+    ['applied','Applied / in process',{kind:'all',status:'all',us:'applied',minrel:'0'}],['interested','Starred / interested',{kind:'all',status:'all',us:'starred',minrel:'0'}],
+    ['open_phd','PhD internships',{kind:'intern',status:'open',degree:'phd'}],['open_bs','Undergrad internships',{kind:'intern',status:'open',degree:'bs'}],['broken_links','Broken links',{kind:'all',status:'open',broken:1,minrel:'0'}],
+    ['closed_tracked','Tracked roles closed',{kind:'all',status:'closed',us:'applied'}],['companies_with_source',`Companies scraped (${k.companies_active} tracked)`,null]];
+  $('#tiles').innerHTML=tiles.map(([key,label,f],i)=>`<div class="tile ${tileFilter===i?'on':''}" data-i="${i}"><div class="n">${k[key]}</div><div class="l">${label}</div></div>`).join('');
+  $$('.tile').forEach(t=>t.onclick=()=>{const f=tiles[+t.dataset.i][2]; if(!f)return; tileFilter=+t.dataset.i; applyFilter(f); });
+  drawChart(s.runs);
+}
+function applyFilter(f){ $('#kind').value=f.kind||'intern'; $('#degree').value=f.degree||''; $('#status').value=f.status||'open'; $('#us').value=f.us||'any'; $('#minrel').value=f.minrel||'30'; $('#broken').checked=!!f.broken;
+  sinceFilter=f.since?new Date(Date.now()-36*3600e3).toISOString():''; page=0; loadJobs(); }
+let sinceFilter='';
+function drawChart(runs){
+  const el=$('#chart'); const data=runs.filter(r=>r.finished_at).slice(-30);
+  if(!data.length){el.innerHTML='<h3>New relevant postings per scrape</h3><div class="hint">No completed runs yet.</div>';return}
+  const W=900,H=110,pad=24,bw=Math.max(4,Math.min(28,(W-pad*2)/data.length-3)), max=Math.max(1,...data.map(r=>r.jobs_new));
+  const bars=data.map((r,i)=>{const h=Math.round((H-30)*r.jobs_new/max), x=pad+i*((W-pad*2)/data.length), y=H-20-h;
+    return `<rect class="bar" x="${x}" y="${y}" width="${bw}" height="${Math.max(h,r.jobs_new?2:0)}" data-t="${esc((r.finished_at||'').slice(0,16).replace('T',' '))}: +${r.jobs_new} new, ${r.jobs_closed} closed, ${r.companies_ok}/${r.companies_total} ok"></rect>`}).join('');
+  const total=data.reduce((a,r)=>a+r.jobs_new,0);
+  el.innerHTML=`<h3>New postings per scrape <span class="hint">· last ${data.length} runs · ${total} total · <a href="#" id="chartTbl">table</a></span></h3>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line class="axis" x1="${pad}" x2="${W-pad}" y1="${H-20}" y2="${H-20}"/>${bars}
+    <text x="${pad}" y="${H-6}">${esc(data[0].finished_at.slice(0,10))}</text><text x="${W-pad}" y="${H-6}" text-anchor="end">${esc(data[data.length-1].finished_at.slice(0,10))}</text><text x="${pad}" y="12">max ${max}</text></svg>`;
+  const tip=$('#tip'); $$('#chart .bar').forEach(b=>{b.onmousemove=e=>{tip.style.display='block';tip.textContent=b.dataset.t;tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px'};b.onmouseleave=()=>tip.style.display='none'});
+  $('#chartTbl').onclick=e=>{e.preventDefault();el.innerHTML='<h3>New postings per scrape</h3><table><thead><tr><th>Finished</th><th>Companies ok</th><th>New</th><th>Closed</th><th>Links broken</th></tr></thead><tbody>'+data.slice().reverse().map(r=>`<tr><td>${esc((r.finished_at||'').slice(0,16).replace('T',' '))}</td><td>${r.companies_ok}/${r.companies_total}</td><td>${r.jobs_new}</td><td>${r.jobs_closed}</td><td>${r.links_broken}</td></tr>`).join('')+'</tbody></table>'};
+}
+function params(){const p=new URLSearchParams({status:$('#status').value,kind:$('#kind').value,degree:$('#degree').value,user_status:$('#us').value,category:$('#cat').value,min_rel:$('#minrel').value,q:$('#q').value,loc:$('#loc').value,sort:$('#sort').value,limit:PAGE,offset:page*PAGE});
+  if($('#broken').checked)p.set('broken','1'); if(sinceFilter)p.set('since',sinceFilter); return p;}
+async function loadJobs(){
+  const p=params(); const d=await api('/api/jobs?'+p); $('#csv').href='/api/export.csv?'+p;
+  $('#count').textContent=`${d.total} roles`; const tb=$('#jobs tbody');
+  if(!d.items.length){tb.innerHTML='<tr><td colspan="8" class="empty">Nothing matches. Loosen the filters, or run a scrape.</td></tr>';$('#pager').innerHTML='';return}
+  tb.innerHTML=d.items.map(j=>rowHtml(j)).join('');
+  const pages=Math.ceil(d.total/PAGE); $('#pager').innerHTML=pages>1?`<button class="btn small" ${page==0?'disabled':''} onclick="page--;loadJobs()">‹ prev</button><span class="small">page ${page+1} / ${pages}</span><button class="btn small" ${page>=pages-1?'disabled':''} onclick="page++;loadJobs()">next ›</button>`:'';
+  bindRows();
+}
+function rowHtml(j){
+  const rel=j.relevance>=70?'hi':j.relevance>=45?'mid':''; const lk=j.link_ok===1?['ok','link ok']:j.link_ok===0?['bad','broken '+(j.link_status||'')]:['unk','unchecked'];
+  const kws=(()=>{try{return JSON.parse(j.keywords||'[]')}catch{return[]}})().map(k=>k.replace('*','')).slice(0,4);
+  const isNew=(Date.now()-Date.parse(j.first_seen))<36*3600e3;
+  return `<tr class="row" data-id="${j.id}"><td><button class="star ${j.starred?'on':''}" title="Star">★</button></td>
+   <td><div class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a>${isNew?' <span class="pill intern">new</span>':''}${j.status==='closed'?' <span class="pill">closed</span>':''}</div>
+       <div class="sub">${esc(j.company)}${j.department&&j.source!=='linkedin_search'&&j.source!=='linkedin'?' · '+esc(j.department):''} · <span class="pill ${j.is_intern?'intern':''}">${j.is_intern?'intern':j.is_newgrad?'new grad':j.employment_type||'full-time'}</span>${kws.map(k=>`<span class="pill">${k}</span>`).join('')}<span class="pill">${esc(j.source)}</span></div></td>
+   <td class="hide sub">${esc(j.location||'—')}${j.remote?' · remote':''}</td>
+   <td class="hide sub mono">${esc(j.posted_at||'?')}<br>found ${ago(j.first_seen)}</td>
+   <td><span class="rel ${rel}">${j.relevance}</span></td>
+   <td><span class="pill deg">${esc(degLabel(j.degree))}</span>${j.is_us===0?'<div class="sub" style="color:var(--crit)">non-US</div>':j.is_us===null?'<div class="sub">loc?</div>':''}</td>
+   <td><span class="link ${lk[0]}" title="${lk[1]} · checked ${ago(j.link_checked_at)}"><span class="dot"></span>${lk[0]==='bad'?'broken':lk[0]==='ok'?'ok':'?'}</span></td>
+   <td><select class="status">${STATUSES.map(([v,l])=>`<option value="${v}" ${j.user_status===v?'selected':''}>${l}</option>`).join('')}</select>${j.applied_at?`<div class="sub mono">applied ${esc(j.applied_at.slice(0,10))}</div>`:''}</td></tr>
+   <tr class="exp"><td colspan="8"><div class="meta"><span>${esc(j.company)}</span><span>${esc(j.location)}</span><span>posted ${esc(j.posted_at||'?')}</span><span>first seen ${esc(j.first_seen.slice(0,10))}</span><span>last seen ${esc(j.last_seen.slice(0,10))}</span>${j.apply_url?`<a href="${esc(j.apply_url)}" target="_blank">apply link ↗</a>`:''}<a href="${esc(j.url)}" target="_blank">posting ↗</a><a href="#" class="recheck">re-check link</a></div>${esc(j.snippet||'(no description captured)')}<br><br><textarea class="notes" placeholder="Your notes (saved automatically)">${esc(j.user_notes||'')}</textarea></td></tr>`;
+}
+function bindRows(){
+  $$('#jobs tr.row').forEach(tr=>{ const id=tr.dataset.id;
+    tr.onclick=e=>{ if(e.target.closest('a,select,button'))return; tr.classList.toggle('open'); };
+    tr.querySelector('.star').onclick=async e=>{e.stopPropagation(); const on=!e.target.classList.contains('on'); e.target.classList.toggle('on',on); await api('/api/jobs/'+id,{method:'POST',body:JSON.stringify({starred:on})}); loadSummary();};
+    tr.querySelector('select.status').onchange=async e=>{ await api('/api/jobs/'+id,{method:'POST',body:JSON.stringify({user_status:e.target.value})}); loadSummary(); };
+    const exp=tr.nextElementSibling; let t;
+    exp.querySelector('.notes').oninput=e=>{clearTimeout(t);t=setTimeout(()=>api('/api/jobs/'+id,{method:'POST',body:JSON.stringify({user_notes:e.target.value})}),600)};
+    exp.querySelector('.recheck').onclick=async e=>{e.preventDefault();e.target.textContent='checking…';const r=await api('/api/jobs/'+id+'/recheck',{method:'POST',body:'{}'});e.target.textContent='re-check link';const j=r.job; if(j){const lk=tr.querySelector('.link');lk.className='link '+(j.link_ok===1?'ok':j.link_ok===0?'bad':'unk');lk.innerHTML='<span class="dot"></span>'+(j.link_ok===1?'ok':j.link_ok===0?'broken':'?')}};
+  });
+}
+async function loadCompanies(){
+  const p=new URLSearchParams({active:$('#cactive').value,q:$('#cq').value,status:$('#cstatus').value}); const d=await api('/api/companies?'+p);
+  $('#ccount').textContent=`${d.items.length} companies`;
+  $('#cos tbody').innerHTML=d.items.map(c=>`<tr data-id="${c.id}"><td><div class="title">${esc(c.name)}</div><div class="sub">${c.careers_url?`<a href="${esc(c.careers_url)}" target="_blank">careers ↗</a> · `:''}${esc(c.hq||'')}${c.notes?' · '+esc(c.notes):''}</div></td>
+    <td class="hide"><span class="pill">${esc(c.category||'')}</span></td><td>${c.ats_provider?`<span class="pill">${esc(c.ats_provider)}</span>`:'<span class="pill" style="color:var(--crit)">none</span>'}${c.last_status==='error'?`<div class="sub" style="color:var(--crit)" title="${esc(c.last_error||'')}">error ×${c.consecutive_failures}</div>`:''}</td>
+    <td class="mono">${c.open_intern?`<a href="#" class="cojobs" data-id="${c.id}">${c.open_intern}</a>`:'0'}</td><td class="hide mono">${c.open_all}</td><td class="mono">${c.applied}</td>
+    <td><input type="number" class="rel" value="${c.relevance}" min="0" max="100" title="Seed relevance (0-100); score ${c.dynamic_score}"></td>
+    <td class="hide sub">${ago(c.last_scraped_at)}</td><td><input type="checkbox" class="act" ${c.active?'checked':''}></td></tr>`).join('');
+  $$('#cos tr').forEach(tr=>{const id=tr.dataset.id;
+    tr.querySelector('.act').onchange=e=>api('/api/companies/'+id,{method:'POST',body:JSON.stringify({active:e.target.checked?1:0})});
+    tr.querySelector('.rel').onchange=e=>api('/api/companies/'+id,{method:'POST',body:JSON.stringify({relevance:+e.target.value})});
+    const l=tr.querySelector('.cojobs'); if(l)l.onclick=e=>{e.preventDefault();$$('.tabs button')[0].click();$('#q').value='';$('#minrel').value='0';$('#kind').value='intern';page=0;companyFilter=id;loadJobsFor(id)};
+  });
+}
+let companyFilter=null;
+async function loadJobsFor(id){const p=params();p.set('company',id);const d=await api('/api/jobs?'+p);$('#count').textContent=`${d.total} roles at this company (clear search to reset)`;$('#jobs tbody').innerHTML=d.items.map(rowHtml).join('');$('#pager').innerHTML='';bindRows();}
+async function loadEvents(){const d=await api('/api/events?limit=300');
+  $('#events').innerHTML=d.items.length?'<table><tbody>'+d.items.map(e=>`<tr class="ev"><td class="sub mono">${esc(e.ts.slice(0,16).replace('T',' '))}</td><td><span class="k">${esc(e.kind)}</span></td><td>${e.url?`<a href="${esc(e.url)}" target="_blank">${esc(e.title)}</a>`:esc(e.detail)}${e.company?' <span class="sub">· '+esc(e.company)+'</span>':''}${e.url&&e.detail&&e.kind!=='new'?' <span class="sub">· '+esc(e.detail)+'</span>':''}</td></tr>`).join('')+'</tbody></table>':'<div class="empty">No activity yet.</div>';}
+async function loadCats(){const d=await api('/api/categories');$('#cat').innerHTML='<option value="">All categories</option>'+d.items.filter(c=>c.category).map(c=>`<option value="${esc(c.category)}">${esc(c.category)} (${c.open_intern||0})</option>`).join('')}
+['#kind','#degree','#status','#us','#cat','#minrel','#sort','#broken'].forEach(s=>$(s).onchange=()=>{page=0;tileFilter=null;sinceFilter='';loadJobs();loadSummary()});
+let qt; ['#q','#loc'].forEach(s=>$(s).oninput=()=>{clearTimeout(qt);qt=setTimeout(()=>{page=0;loadJobs()},300)});
+let ct; $('#cq').oninput=()=>{clearTimeout(ct);ct=setTimeout(loadCompanies,300)}; $('#cactive').onchange=$('#cstatus').onchange=loadCompanies;
+$('#scrapeBtn').onclick=async()=>{const r=await api('/api/scrape',{method:'POST',body:'{}'});$('#scrapeBtn').disabled=true;$('#scrapeBtn').textContent='Scraping…';if(!r.ok)alert(r.msg)};
+loadSummary(); loadCats(); loadJobs(); setInterval(loadSummary,60000);
+</script>
+</body>
+</html>

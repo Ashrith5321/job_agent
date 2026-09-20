@@ -1,0 +1,37 @@
+{
+  "active_company_limit": 500,
+  "store_min_relevance_intern": 15,
+  "store_min_relevance_fulltime": 50,
+  "track_fulltime": false,
+  "scrape_workers": 10,
+  "linkcheck_workers": 8,
+  "linkcheck_max_age_days": 3,
+  "linkedin_enabled": true,
+  "linkedin_min_interval_sec": 2.5,
+  "linkedin_search_locations": [
+    "United States"
+  ],
+  "linkedin_pages_per_query": 3,
+  "linkedin_company_pages": 3,
+  "linkedin_details_per_run": 60,
+  "notify_desktop": true,
+  "notify_webhook_url": "",
+  "notify_email": {
+    "enabled": false,
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "",
+    "password": "",
+    "to": ""
+  },
+  "dashboard_host": "127.0.0.1",
+  "dashboard_port": 8765,
+  "auto_swap_companies": true,
+  "max_swaps_per_run": 5,
+  "track_newgrad": false,
+  "us_only": true,
+  "handshake_cookie": "",
+  "auto_discover": true,
+  "discover_homepage_fetches": 40,
+  "discover_probe_per_run": 25
+}

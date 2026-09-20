@@ -1,0 +1,8 @@
+# runtime state (never commit)
+data/
+logs/
+config/settings.json
+__pycache__/
+*.pyc
+.venv/
+nohup.out

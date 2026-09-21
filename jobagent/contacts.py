@@ -23,7 +23,7 @@ INBOX_KIND = [("university_recruiter", re.compile(r"universit|campus|intern|earl
 GENERIC_LOCAL = re.compile(r"^(info|press|media|support|help|sales|legal|privacy|security|abuse|noreply|no-reply|donotreply|webmaster|admin|billing|marketing|partnerships?|investors?|ir|contact|hello|team|office|accessibility|accommodations?|dei|ethics|compliance)$", re.I)
 ROLE_KIND = [("university_recruiter", re.compile(r"universit|campus|early[- ]career|intern(ship)? program|student|new grad|emerging talent|college", re.I)),
              ("recruiter", re.compile(r"recruit|talent|sourc|people partner|hr business|technical staffing|talent acquisition|\bta\b", re.I)),
-             ("hiring_manager", re.compile(r"hiring manager|engineering manager|\bmanager\b.*(robot|perception|autonom|planning|ml|machine learning|software)|(robot|perception|autonom|planning|ml|machine learning|software).*\bmanager\b|director of|head of|\bvp\b|vice president|lead\b|principal|staff|chief", re.I))]
+             ("hiring_manager", re.compile(r"\bmanager\b|\bdirector\b|head of|\bvp\b|vice president|\blead\b|principal|\bstaff\b|chief|founder|\bcto\b|\bceo\b", re.I))]
 
 def _kind_for_email(local):
     for k, rx in INBOX_KIND:

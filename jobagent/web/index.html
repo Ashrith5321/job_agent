@@ -93,7 +93,7 @@ pre.digest{white-space:pre-wrap;background:var(--surface);border:1px solid var(-
 <section id="tab-contacts" hidden>
   <div class="filters">
     <input type="search" id="kq" placeholder="Search name, title, email, company…">
-    <select id="krole"><option value="">Any role</option><option value="university_recruiter">University / intern recruiting</option><option value="recruiter">Recruiter</option><option value="hiring_manager">Hiring manager / lead</option><option value="engineering_lead">Other / found on site</option><option value="inbox">Shared inbox</option></select>
+    <select id="krole"><option value="">Any role</option><option value="university_recruiter">University / intern recruiting</option><option value="recruiter">Recruiter</option><option value="hiring_manager">Hiring manager / lead</option><option value="engineering_lead">Engineer / other</option><option value="inbox">Shared inbox</option></select>
     <label class="small"><input type="checkbox" id="kemail"> with email only</label>
     <label class="small"><input type="checkbox" id="kinterns" checked> companies with open interns</label>
     <select id="kcontacted"><option value="">Contacted or not</option><option value="0">Not contacted</option><option value="1">Contacted</option></select>
@@ -200,7 +200,7 @@ async function loadCompanies(){
 }
 let companyFilter=null;
 async function loadJobsFor(id){const p=params();p.set('company',id);const d=await api('/api/jobs?'+p);$('#count').textContent=`${d.total} roles at this company (clear search to reset)`;$('#jobs tbody').innerHTML=d.items.map(rowHtml).join('');$('#pager').innerHTML='';bindRows();}
-const ROLE={university_recruiter:'University recruiting',recruiter:'Recruiter',hiring_manager:'Hiring manager / lead',engineering_lead:'Other / found on site',inbox:'Shared inbox'};
+const ROLE={university_recruiter:'University recruiting',recruiter:'Recruiter',hiring_manager:'Hiring manager / lead',engineering_lead:'Engineer / other',inbox:'Shared inbox'};
 async function loadContacts(){
   const p=new URLSearchParams({q:$('#kq').value,role:$('#krole').value,has_email:$('#kemail').checked?'1':'',with_interns:$('#kinterns').checked?'1':'',contacted:$('#kcontacted').value});
   const d=await api('/api/contacts?'+p); $('#kcsv').href='/api/contacts.csv?'+p;

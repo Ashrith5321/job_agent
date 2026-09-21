@@ -123,6 +123,48 @@ def api_events(conn, q):
     return {"items": rows(conn, """SELECT e.ts, e.kind, e.detail, e.job_id, j.title, j.url, c.name AS company FROM events e LEFT JOIN jobs j ON j.id=e.job_id
                                    LEFT JOIN companies c ON c.id=COALESCE(e.company_id, j.company_id) WHERE e.kind!='user_update' ORDER BY e.id DESC LIMIT ?""", (lim,))}
 
+def api_contacts(conn, q):
+    g = lambda k, d=None: (q.get(k) or [d])[0]
+    where, args = ["ct.hidden=0"], []
+    if g("company"): where.append("ct.company_id=?"); args.append(int(g("company")))
+    if g("role"): where.append("ct.role_type=?"); args.append(g("role"))
+    if g("has_email") == "1": where.append("ct.email IS NOT NULL AND ct.email!=''")
+    if g("contacted") == "1": where.append("ct.contacted=1")
+    elif g("contacted") == "0": where.append("ct.contacted=0")
+    if g("q"):
+        for tok in g("q").split():
+            where.append("(ct.name LIKE ? OR ct.title LIKE ? OR ct.email LIKE ? OR c.name LIKE ?)"); args += [f"%{tok}%"] * 4
+    if g("with_interns") == "1": where.append("(SELECT COUNT(*) FROM jobs j WHERE j.company_id=c.id AND j.status='open' AND j.is_intern=1) > 0")
+    limit = min(int(g("limit", 300)), 3000)
+    items = rows(conn, f"""SELECT ct.*, c.name AS company, c.email_pattern, c.contacts_checked_at,
+                           (SELECT COUNT(*) FROM jobs j WHERE j.company_id=c.id AND j.status='open' AND j.is_intern=1) AS open_intern
+                           FROM contacts ct JOIN companies c ON c.id=ct.company_id WHERE {' AND '.join(where)}
+                           ORDER BY open_intern DESC, c.name ASC, CASE ct.role_type WHEN 'university_recruiter' THEN 0 WHEN 'recruiter' THEN 1 WHEN 'inbox' THEN 2 WHEN 'hiring_manager' THEN 3 ELSE 4 END,
+                           CASE ct.email_confidence WHEN 'found' THEN 0 WHEN 'pattern' THEN 1 WHEN 'guess' THEN 2 ELSE 3 END LIMIT ?""", args + [limit])
+    total = one(conn, f"SELECT COUNT(*) n FROM contacts ct JOIN companies c ON c.id=ct.company_id WHERE {' AND '.join(where)}", args)["n"]
+    covered = one(conn, "SELECT COUNT(*) n FROM companies WHERE active=1 AND contacts_checked_at IS NOT NULL")["n"]
+    return {"items": items, "total": total, "companies_checked": covered}
+
+def api_update_contact(conn, cid, body):
+    sets, args = [], []
+    if "contacted" in body:
+        sets.append("contacted=?"); args.append(1 if body["contacted"] else 0)
+        if body["contacted"]: sets.append("contacted_at=COALESCE(contacted_at, ?)"); args.append(now_iso())
+    for k in ("user_notes", "email", "hidden", "name", "title"):
+        if k in body: sets.append(f"{k}=?"); args.append(body[k])
+    if "email" in body and body.get("email"): sets.append("email_confidence='found'")
+    if sets: conn.execute(f"UPDATE contacts SET {', '.join(sets)} WHERE id=?", args + [cid]); conn.commit()
+    return {"ok": True}
+
+def start_contacts(company_id=None):
+    if _scrape_proc["p"] is not None and _scrape_proc["p"].poll() is None: return {"ok": False, "msg": "a job is already running"}
+    log = open(DATA.parent / "logs" / "contacts_dashboard.log", "ab")
+    cmd = [sys.executable, "-m", "jobagent", "contacts", "--limit", "40"]
+    if company_id:
+        slug = one(_conn(), "SELECT slug FROM companies WHERE id=?", (company_id,))["slug"]; cmd = [sys.executable, "-m", "jobagent", "contacts", "--only", slug, "--force"]
+    _scrape_proc["p"] = subprocess.Popen(cmd, cwd=str(ROOT), stdout=log, stderr=subprocess.STDOUT); _scrape_proc["started"] = now_iso()
+    return {"ok": True}
+
 def api_categories(conn):
     return {"items": rows(conn, """SELECT c.category, COUNT(DISTINCT c.id) companies, SUM(CASE WHEN j.status='open' AND j.is_intern=1 THEN 1 ELSE 0 END) open_intern
                                    FROM companies c LEFT JOIN jobs j ON j.company_id=c.id WHERE c.active=1 GROUP BY c.category ORDER BY open_intern DESC""")}
@@ -159,6 +201,13 @@ class H(BaseHTTPRequestHandler):
             if p == "/api/companies": return self._send(200, api_companies(_conn(), q))
             if p == "/api/events": return self._send(200, api_events(_conn(), q))
             if p == "/api/categories": return self._send(200, api_categories(_conn()))
+            if p == "/api/contacts": return self._send(200, api_contacts(_conn(), q))
+            if p == "/api/contacts.csv":
+                import csv, io
+                items = api_contacts(_conn(), {**q, "limit": ["3000"]})["items"]; buf = io.StringIO(); w = csv.writer(buf)
+                w.writerow(["company", "name", "title", "role", "email", "email_confidence", "linkedin", "source", "contacted", "notes"])
+                for c in items: w.writerow([c["company"], c["name"], c["title"], c["role_type"], c["email"], c["email_confidence"], c["linkedin_url"], c["source"], c["contacted"], c["user_notes"] or ""])
+                return self._send(200, buf.getvalue().encode(), "text/csv")
             if p == "/api/digest":
                 f = DATA / "digest_latest.md"; return self._send(200, {"text": f.read_text() if f.exists() else ""})
             if p == "/api/export.csv":
@@ -179,6 +228,8 @@ class H(BaseHTTPRequestHandler):
                 if p.startswith("/api/jobs/"): return self._send(200, api_update_job(_conn(), int(p.split("/")[3]), body))
                 if p.startswith("/api/companies/"): return self._send(200, api_update_company(_conn(), int(p.split("/")[3]), body))
                 if p == "/api/scrape": return self._send(200, start_scrape())
+                if p == "/api/contacts/run": return self._send(200, start_contacts(body.get("company_id")))
+                if p.startswith("/api/contacts/"): return self._send(200, api_update_contact(_conn(), int(p.split("/")[3]), body))
             self._send(404, {"error": "not found"})
         except Exception as e:
             self._send(500, {"error": f"{type(e).__name__}: {e}"})

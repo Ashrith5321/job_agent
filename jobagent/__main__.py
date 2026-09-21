@@ -67,6 +67,15 @@ def cmd_scrape(a):
     from .runner import run
     run(kind=a.kind, limit=a.limit, only=a.only, linkcheck=not a.no_linkcheck, notify=not a.no_notify, workers=a.workers, discover=not a.no_discover)
 
+def cmd_contacts(a):
+    from .contacts import run_contacts, pick_companies
+    from .http import default_http
+    conn = connect()
+    if a.only: cs = rows(conn, "SELECT * FROM companies WHERE slug=? OR name LIKE ?", (a.only, f"%{a.only}%"))
+    else: cs = pick_companies(conn, a.limit, stale_days=0 if a.force else 30)
+    print(f"finding recruiters/hiring managers for {len(cs)} companies …")
+    print(run_contacts(conn, default_http(), cs, delay=a.delay))
+
 def cmd_discover(a):
     from .discover import run_discovery, promote_candidates
     if not a.promote_only: run_discovery(max_homepage_fetches=a.homepages, include_vc=not a.no_vc)
@@ -124,6 +133,7 @@ def main(argv=None):
     x = sp.add_parser("init", help="load seed + registry into DB"); x.add_argument("--prune", action="store_true", help="delete seed companies not in seed files"); x.set_defaults(f=cmd_init)
     x = sp.add_parser("probe", help="discover ATS boards"); x.add_argument("--all", action="store_true"); x.add_argument("--only"); x.add_argument("--limit", type=int); x.add_argument("--workers", type=int, default=12); x.add_argument("-v", "--verbose", action="store_true"); x.set_defaults(f=cmd_probe)
     x = sp.add_parser("scrape", help="run a scrape"); x.add_argument("--limit", type=int); x.add_argument("--only"); x.add_argument("--workers", type=int); x.add_argument("--no-linkcheck", action="store_true"); x.add_argument("--no-notify", action="store_true"); x.add_argument("--kind", default="manual"); x.add_argument("--no-discover", action="store_true"); x.set_defaults(f=cmd_scrape)
+    x = sp.add_parser("contacts", help="find recruiter / hiring-manager contacts (public sources)"); x.add_argument("--only"); x.add_argument("--limit", type=int, default=30); x.add_argument("--force", action="store_true"); x.add_argument("--delay", type=float, default=2.0); x.set_defaults(f=cmd_contacts)
     x = sp.add_parser("discover", help="find new companies (YC, VC portfolios) and activate promising ones"); x.add_argument("--homepages", type=int, default=60); x.add_argument("--probe", type=int, default=40); x.add_argument("--no-vc", action="store_true"); x.add_argument("--no-promote", action="store_true"); x.add_argument("--promote-only", action="store_true"); x.set_defaults(f=cmd_discover)
     x = sp.add_parser("linkcheck"); x.add_argument("--limit", type=int, default=500); x.set_defaults(f=cmd_linkcheck)
     x = sp.add_parser("serve", help="run the dashboard"); x.add_argument("--host"); x.add_argument("--port", type=int); x.set_defaults(f=cmd_serve)

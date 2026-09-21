@@ -47,6 +47,14 @@ python3 -m jobagent serve       # dashboard at http://127.0.0.1:8765
 * **Handshake.** Requires your university login. In your browser, log into app.joinhandshake.com, open DevTools →
   Network → click any request to app.joinhandshake.com → copy the full `cookie` request header value into
   `config/settings.json` → `"handshake_cookie"`. Sessions expire every few weeks; the run log says when it needs refreshing.
+* **Recruiters / hiring managers (Recruiters tab).** For each tracked company the bot collects contacts from
+  *public* sources only: emails on the company's careers/contact pages, emails embedded in job postings, and
+  search-engine-indexed LinkedIn profile titles ("Jane Doe – University Recruiter at Acme"). No LinkedIn login is used
+  (logged-in scraping gets accounts banned). Every email carries a confidence: `found` (seen verbatim on a public
+  page), `pattern` (built from the company's observed email format), `guess` (first.last@domain, unverified).
+  25 companies are processed per scheduled run (`contacts_per_run`), prioritising companies with open internships;
+  `python3 -m jobagent contacts --only <slug> --force` does one on demand. Mark contacted / add notes / correct emails
+  on the dashboard; CSV export available.
 * **Notifications.** After each run: `data/digest_latest.md` (+ dated copy in `data/digests/`), a desktop
   notification, and optionally a Slack/Discord-style webhook or email (see `config/settings.json`).
 
@@ -59,6 +67,8 @@ python3 -m jobagent serve       # dashboard at http://127.0.0.1:8765
 | `scrape [--limit N] [--only slug] [--no-linkcheck] [--no-notify]` | run a scrape |
 | `serve` | dashboard |
 | `add "Company Name" domain.com [--relevance 80] [--category humanoid]` | add + probe one company |
+| `contacts [--only slug] [--limit N] [--force]` | find recruiter / hiring-manager contacts |
+| `discover [--no-vc] [--no-promote]` | find new companies (YC, VC portfolios) and activate promising ones |
 | `linkcheck`, `digest`, `stats`, `rebalance`, `export` | utilities |
 
 ## Files

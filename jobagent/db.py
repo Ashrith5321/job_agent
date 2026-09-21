@@ -83,6 +83,27 @@ CREATE TABLE IF NOT EXISTS events (
 );
 CREATE INDEX IF NOT EXISTS idx_events_ts ON events(ts);
 CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT);
+CREATE TABLE IF NOT EXISTS contacts (
+  id INTEGER PRIMARY KEY,
+  company_id INTEGER NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
+  name TEXT,
+  title TEXT,
+  role_type TEXT,            -- recruiter | university_recruiter | hiring_manager | engineering_lead | inbox
+  email TEXT,
+  email_confidence TEXT,     -- found | pattern | guess | none
+  linkedin_url TEXT,
+  source TEXT,               -- ddg:linkedin | careers_page | job_posting | contact_page | pattern
+  source_url TEXT,
+  found_at TEXT,
+  last_seen TEXT,
+  contacted INTEGER DEFAULT 0,
+  contacted_at TEXT,
+  user_notes TEXT,
+  hidden INTEGER DEFAULT 0,
+  UNIQUE(company_id, linkedin_url),
+  UNIQUE(company_id, email)
+);
+CREATE INDEX IF NOT EXISTS idx_contacts_company ON contacts(company_id);
 """
 
 _lock = threading.RLock()
@@ -103,7 +124,7 @@ def _migrate(conn):
     for col, ddl in (("is_us", "INTEGER"), ("degree", "TEXT DEFAULT 'any'")):
         if col not in have: conn.execute(f"ALTER TABLE jobs ADD COLUMN {col} {ddl}")
     have = {r[1] for r in conn.execute("PRAGMA table_info(companies)")}
-    for col, ddl in (("is_us", "INTEGER DEFAULT 1"),):
+    for col, ddl in (("is_us", "INTEGER DEFAULT 1"), ("contacts_checked_at", "TEXT"), ("email_pattern", "TEXT"), ("contacts_n", "INTEGER DEFAULT 0")):
         if col not in have: conn.execute(f"ALTER TABLE companies ADD COLUMN {col} {ddl}")
     conn.commit()
 

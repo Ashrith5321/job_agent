@@ -50,6 +50,8 @@ DEFAULTS = {
     "dashboard_port": 8765,
     "auto_swap_companies": True,
     "auto_discover": True,
+    "contacts_per_run": 25,
+    "contacts_search_delay": 2.5,
     "discover_homepage_fetches": 40,
     "discover_probe_per_run": 25,
     "max_swaps_per_run": 5,

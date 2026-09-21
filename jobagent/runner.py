@@ -219,6 +219,16 @@ def run(kind="scheduled", limit=None, only=None, linkcheck=True, notify=True, wo
             swaps += promote_candidates(max_probe=st.get("discover_probe_per_run", 25), log=_log, run_id=run_id)
         except Exception as e:
             _log(f"discovery failed: {type(e).__name__}: {e}")
+    if st.get("contacts_per_run", 0) and kind in ("scheduled", "dashboard", "manual"):
+        try:
+            from .contacts import run_contacts, pick_companies
+            cs = pick_companies(conn, st["contacts_per_run"])
+            if cs:
+                _log(f"contacts: {len(cs)} companies")
+                cst = run_contacts(conn, http, cs, log=_log, run_id=run_id, delay=st.get("contacts_search_delay", 2.5))
+                _log(f"contacts done: +{cst['new']} new across {cst['companies']} companies")
+        except Exception as e:
+            _log(f"contacts failed: {type(e).__name__}: {e}")
     conn.execute("""UPDATE runs SET finished_at=?, companies_total=?, companies_ok=?, companies_err=?, jobs_seen=?, jobs_new=?, jobs_closed=?, jobs_reopened=?,
                     links_checked=?, links_broken=?, notes=? WHERE id=?""",
                  (now_iso(), len(companies), tot["ok"], tot["err"], tot["seen"], tot["new"], tot["closed"], tot["reopened"], checked, broken,

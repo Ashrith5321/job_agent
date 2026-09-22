@@ -19,6 +19,17 @@ class Apple(Scraper):
     def fetch(self, http, company, known_ext_ids=None):
         from ..config import settings
         seen, jobs, errs = {}, [], 0
+        # Apple's US internships live under the "Students" team; keyword search rarely surfaces them
+        for p in range(1, 4):
+            try:
+                r = http.get(f"https://jobs.apple.com/en-us/search?team=internships-STDNT-INTRN&location=united-states-USA&sort=newest&page={p}", headers={"Accept": "text/html"})
+                data = _hydration(r.text) if r.status_code == 200 else None
+                res = ((data or {}).get("loaderData") or {}).get("search", {}).get("searchResults") or []
+            except Exception:
+                res = []
+            for j in res:
+                ext = str(j.get("positionId") or j.get("id")); seen.setdefault(ext, j)
+            if len(res) < 20: break
         for q in settings()["apple_queries"]:
             for p in range(1, 6):
                 try:

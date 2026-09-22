@@ -144,7 +144,9 @@ def probe_company(http, company, log=None):
             r = http.get(u, headers={"Accept": "text/html"}, timeout=15)
             if r.status_code != 200 or "text/html" not in r.headers.get("content-type", "html"): continue
             html_seen += 1
-            found = _find_in_html(r.text, u)
+            # careers.<domain> often just redirects to the ATS; the final URL (and any history) is a strong signal
+            chain = " ".join([h.headers.get("Location", "") for h in r.history] + [r.url])
+            found = _find_in_html(chain + " " + r.text, u)
             if found:
                 candidates += found
                 if not careers_url: careers_url = r.url

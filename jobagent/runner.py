@@ -184,7 +184,8 @@ def run(kind="scheduled", limit=None, only=None, linkcheck=True, notify=True, wo
     companies = rows(conn, q, args)
     if limit: companies = companies[:limit]
     known = {}
-    for r in rows(conn, "SELECT company_id, ext_id FROM jobs"): known.setdefault(r["company_id"], set()).add(r["ext_id"])
+    # "known" = jobs whose description we already captured; jobs stored without one get their details fetched on later runs
+    for r in rows(conn, "SELECT company_id, ext_id FROM jobs WHERE description IS NOT NULL AND description!=''"): known.setdefault(r["company_id"], set()).add(r["ext_id"])
     cidx = _company_index(conn)
     _log(f"run #{run_id}: scraping {len(companies)} companies with {workers or st['scrape_workers']} workers")
     tot = {"ok": 0, "err": 0, "seen": 0, "new": 0, "closed": 0, "reopened": 0}

@@ -11,9 +11,9 @@
   "linkedin_search_locations": [
     "United States"
   ],
-  "linkedin_pages_per_query": 3,
-  "linkedin_company_pages": 3,
-  "linkedin_details_per_run": 60,
+  "linkedin_pages_per_query": 5,
+  "linkedin_company_pages": 5,
+  "linkedin_details_per_run": 150,
   "notify_desktop": true,
   "notify_webhook_url": "",
   "notify_email": {
@@ -35,5 +35,31 @@
   "discover_homepage_fetches": 40,
   "discover_probe_per_run": 25,
   "contacts_per_run": 25,
-  "contacts_search_delay": 2.5
+  "contacts_search_delay": 2.5,
+  "linkedin_search_queries": [
+    "robotics intern",
+    "perception intern",
+    "computer vision intern",
+    "computer vision engineer intern",
+    "3D computer vision intern",
+    "autonomy intern",
+    "autonomous vehicles intern",
+    "motion planning intern",
+    "SLAM intern",
+    "sensor fusion intern",
+    "localization mapping intern",
+    "machine learning robotics intern",
+    "deep learning intern robotics",
+    "robot learning intern",
+    "reinforcement learning robotics intern",
+    "robotics simulation intern",
+    "image processing intern",
+    "perception engineer co-op",
+    "robotics co-op",
+    "autonomy co-op",
+    "controls engineering intern robotics",
+    "embedded ML intern robotics",
+    "lidar intern",
+    "AI research intern robotics"
+  ]
 }

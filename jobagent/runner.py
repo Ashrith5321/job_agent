@@ -149,6 +149,20 @@ def dedupe_linkedin(conn):
             conn.execute("UPDATE jobs SET status='duplicate' WHERE id=?", (j["id"],)); n += 1
     return n
 
+def dedupe_shared_boards(conn, run_id=None):
+    """Two seed entries pointing at the same ATS board (e.g. 'Bosch' and 'Bosch Research') would double every posting; keep the higher-relevance one."""
+    n = 0
+    for d in rows(conn, "SELECT ats_provider, ats_token, ats_extra, GROUP_CONCAT(id) ids FROM companies WHERE active=1 AND ((ats_token!='' AND ats_token IS NOT NULL) OR ats_provider='workday') GROUP BY ats_provider, ats_token, ats_extra HAVING COUNT(*)>1"):
+        ids = [int(x) for x in d["ids"].split(",")]
+        keep = one(conn, f"SELECT id, name FROM companies WHERE id IN ({','.join('?'*len(ids))}) ORDER BY relevance DESC, id ASC LIMIT 1", ids)
+        for i in ids:
+            if i != keep["id"]:
+                conn.execute("UPDATE companies SET active=0, notes='duplicate board of '||? WHERE id=?", (keep["name"], i))
+                conn.execute("DELETE FROM jobs WHERE company_id=? AND user_status='none' AND starred=0", (i,))
+                conn.execute("UPDATE jobs SET status='duplicate' WHERE company_id=?", (i,))
+                log_event(conn, "company_deduped", f"#{i} shares a board with {keep['name']}", run_id, company_id=i); n += 1
+    conn.commit(); return n
+
 def rebalance(conn, run_id, st):
     """Keep the active set at the configured size; swap in strong discovered/candidate companies for dead weight."""
     if not st.get("auto_swap_companies"): return 0
@@ -205,6 +219,8 @@ def run(kind="scheduled", limit=None, only=None, linkcheck=True, notify=True, wo
                     _log(f"  [{i}/{len(companies)}] {c['name']}: {s['seen']} listed, kept {s['kept']}, +{s['new']} new, -{s['closed']} closed, {s['reopened']} reopened ({res.get('secs',0):.0f}s)")
     tot["closed"] += close_stale_search_jobs(conn, run_id)
     nd = dedupe_linkedin(conn); conn.commit()
+    nb = dedupe_shared_boards(conn, run_id)
+    if nb: _log(f"deduped {nb} companies sharing a job board")
     _log(f"scrape done: ok={tot['ok']} err={tot['err']} seen={tot['seen']} new={tot['new']} closed={tot['closed']} reopened={tot['reopened']} li-dupes={nd}")
     checked = broken = 0
     if linkcheck:

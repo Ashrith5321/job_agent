@@ -32,6 +32,15 @@ NON_US_CITIES = ["london","oxford","cambridge, uk","cambridge, england","manches
  "sydney","melbourne, au","melbourne, vic","brisbane","auckland","toronto","vancouver","montreal","montréal","ottawa","waterloo","kitchener","calgary","edmonton",
  "mexico city","guadalajara","monterrey","são paulo","sao paulo","buenos aires","bogota","bogotá","santiago","dubai","abu dhabi","riyadh","cairo","nairobi","lagos"]
 CA_PROV = {"ON","BC","QC","AB","MB","SK","NS","NB","NL","PE","YT","NT","NU"}
+NON_US_ISO = {"fr","gb","uk","cn","jp","kr","au","nl","se","ch","at","pl","cz","ro","mx","br","sg","tw","es","it","pt","be","dk","fi","ie","hu","tr","ae","nz","za","cl","my","th","vn","ph","hk","sa","qa","ee","lv","lt","ua","rs","hr","sk","si","bg","lu","pk","bd","lk","eg","ke","ng","gr","bw","nds","nrw","vic","nsw","qld"}
+# NOTE: de/in/ca/co/id/or/no/is/il/ar/ne/me are deliberately excluded (collide with US states or English words)
+NON_US_BARE_CITIES = ["melbourne","perth","adelaide","canberra","hildesheim","kusterdingen","renningen","abstatt","reutlingen","hatvan","budapest","miskolc","cluj","bucharest","brno","ostrava","wroclaw","gdansk",
+ "gothenburg","lund","tampere","espoo","leuven","ghent","antwerp","utrecht","the hague","eindhoven","basel","bern","zug","graz","linz","salzburg","porto","lisbon","valencia","seville","bilbao","bologna","turin","genoa",
+ "nuremberg","dresden","leipzig","hannover","bremen","cologne","dusseldorf","düsseldorf","dortmund","essen","mannheim","heidelberg","freiburg","ulm","augsburg","regensburg","ingolstadt","erlangen","wolfsburg","braunschweig",
+ "bangalore","pune","chennai","kolkata","ahmedabad","kochi","coimbatore","chandigarh","jaipur","lucknow","nagpur","indore","bhubaneswar","visakhapatnam","mysore","mysuru","trivandrum","thiruvananthapuram","gurgaon","noida",
+ "wuhan","chengdu","nanjing","xi'an","xian","tianjin","dalian","qingdao","hefei","changsha","zhengzhou","dongguan","foshan","xiamen","fuzhou","kunming","harbin","shenyang","jinan","ningbo","wuxi","changzhou","zhuhai",
+ "yokohama","nagoya","kyoto","kobe","fukuoka","sapporo","sendai","hiroshima","tsukuba","kawasaki","saitama","chiba","busan","incheon","daegu","gwangju","suwon","hwaseong","pangyo","taichung","kaohsiung","tainan",
+ "montreal","quebec","winnipeg","halifax","victoria, bc","burnaby","mississauga","markham","hamilton, on","london, on","guelph","kingston, on","saskatoon","regina","st. john's"]
 
 _st_full = re.compile(r"\b(" + "|".join(re.escape(s) for s in STATES) + r")\b", re.I)
 _us_word = re.compile(r"\b(?:USA|U\.S\.A\.?|U\.S\.|United States(?: of America)?)\b", re.I)
@@ -42,6 +51,13 @@ def _one(part):
     if not p: return "unknown"
     if _us_word.search(p) or _us_short.search(p): return "us"
     if any(c in pl for c in NON_US_CITIES): return "non_us"
+    toks_up = [t.strip() for t in re.split(r"[,;/|()\-–]", p)]
+    has_us_state = bool(_st_full.search(p)) or any(t in ABBR and t not in CA_PROV for t in toks_up if len(t) == 2)
+    if has_us_state: return "us"     # a US state beats any ambiguous city/ISO token ("Melbourne, FL", "San Jose, CA")
+    toks0 = [t.strip().lower() for t in re.split(r"[,;/|()]", p)]
+    if any(t in NON_US_ISO for t in toks0) and not any(t in {"us", "usa", "united states"} for t in toks0): return "non_us"
+    if toks0 and toks0[-1] == "de" and len(toks0) >= 2: return "non_us"   # "<city>, <state>, de" = Germany (Delaware is written DE with a US city/state context above)
+    if any(re.search(r"(?:^|[,;(\s])" + re.escape(c) + r"(?:[,;)\s]|$)", pl) for c in NON_US_BARE_CITIES): return "non_us"
     # country words at token boundaries
     for c in NON_US_COUNTRIES:
         if re.search(r"(?:^|[,;(\s])" + re.escape(c) + r"(?:[,;)\s]|$)", pl):

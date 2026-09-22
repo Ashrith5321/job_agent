@@ -1,0 +1,29 @@
+{
+  "_comment": "Candidate profile used to tune relevance. Edit freely; run `python3 -m jobagent rescore` afterwards.",
+  "degree": "bs",
+  "graduation": "2027-12",
+  "target_terms": ["summer 2027", "fall 2027", "winter 2027", "spring 2027", "2027", "co-op", "coop"],
+  "expired_terms": ["summer 2026", "spring 2026", "winter 2026", "fall 2025", "summer 2025", "2025"],
+  "degree_multiplier": {"bs": 1.0, "bs/ms": 1.0, "bs/ms/phd": 1.0, "any": 1.0, "ms": 0.85, "bs/phd": 0.9, "ms/phd": 0.75, "phd": 0.55},
+  "core_fit": {
+    "_weight": 14,
+    "patterns": ["\\bslam\\b", "localization", "state estimation", "sensor fusion", "3d perception", "3d (?:vision|reconstruction|computer vision)", "stereo", "multi[- ]?view",
+                 "visual odometry", "\\bodometry\\b", "point ?clouds?", "gaussian splat\\w*", "\\bnerf\\b", "depth estimation", "\\bmapping\\b", "occupancy", "\\bperception\\b",
+                 "world model", "\\bvla\\b", "vision[- ]language[- ]action", "vision[- ]language", "\\bvlm\\b", "embodied", "\\bnavigation\\b", "object ?nav", "exploration",
+                 "autonomous driving", "self[- ]driving", "autonomous vehicle", "\\badas\\b", "end[- ]to[- ]end (?:driving|autonomy|learning)", "planning", "trajectory",
+                 "tensorrt", "quantiz\\w+", "\\bcuda\\b", "edge (?:inference|deployment|compute|ai)", "on-?device", "real[- ]time inference", "inference optimi[sz]ation", "model optimi[sz]ation",
+                 "underwater", "\\bmarine\\b", "\\bsonar\\b", "\\bauv\\b", "\\brov\\b", "subsea", "habitat", "isaac", "\\bros ?2?\\b", "sim[- ]?to[- ]?real", "robot learning",
+                 "imitation learning", "reinforcement learning", "foundation model", "multi[- ]?camera", "lidar", "camera calibration", "\\bcalibration\\b", "\\bc\\+\\+\\b", "pytorch"]
+  },
+  "penalty": {
+    "_weight": -10,
+    "patterns": ["\\bnlp\\b", "natural language", "\\bllm\\b(?!.*(?:robot|embodied|vla|planning))", "large language model", "chatbot", "recommend(?:ation|er)", "\\bads\\b", "advertis",
+                 "\\bsearch (?:ranking|quality)", "data scien\\w+", "\\banalytics\\b", "business intelligence", "\\bweb\\b", "front[- ]?end", "\\bios\\b", "\\bandroid\\b", "\\bmobile app",
+                 "\\bcloud\\b", "\\bdevops\\b", "\\bsre\\b", "site reliability", "\\bsecurity\\b", "\\bfintech\\b", "\\bpayments?\\b", "\\bblockchain\\b", "\\bcrypto\\b", "\\bsql\\b",
+                 "mechanical", "electrical", "\\bpcb\\b", "\\bfpga\\b", "\\basic\\b", "\\brf\\b", "\\bthermal\\b", "\\bstructural\\b", "\\bmaterials?\\b", "manufactur\\w+", "\\bquality (?:engineer|assurance)",
+                 "\\bbiolog", "\\bchemist", "\\bmedical device\\b", "\\bclinical\\b", "\\bpharma", "\\bgenomic", "\\bprotein\\b", "\\bdrug\\b"]
+  },
+  "category_bonus": {"av": 8, "perception": 8, "robot_ml": 8, "humanoid": 7, "marine": 8, "research_lab": 6, "simulation_tools": 5, "drone_aero": 4, "logistics": 3,
+                     "delivery": 4, "agri": 3, "construction": 3, "sensors_chips": 3, "bigtech": 4, "ai_lab": 4, "consumer": 1, "industrial": 1, "space": 2, "defense": 2,
+                     "medical": -4, "mobility": 2, "yc": 2, "vc": 2, "discovered": 0}
+}

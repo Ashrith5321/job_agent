@@ -4,8 +4,10 @@ from .config import settings
 from .db import connect, rows, one, log_event, upsert_company
 from .http import default_http, HttpError
 from .scrapers import get as get_scraper
-from .scoring import classify, degree_level
+from .scoring import classify, degree_level, profile_adjust
 from .geo import us_status
+import re as _re
+FOREIGN_TITLE = _re.compile(r"praktik|werkstudent|stagiaire|\bstage\b|abschlussarbeit|masterarbeit|bachelorarbeit|\(m/[wf]/[dx]\)|\(f/m/[dx]\)|\(w/m/d\)|\bpraktikant|\bduales? studium|\balternance\b|\bbecario|\bpasant[ií]a|\btirocin|\bestágio\b", _re.I)
 from .util import now_iso, norm_text, slugify
 from .linkcheck import run_linkcheck
 
@@ -60,14 +62,17 @@ def reconcile(conn, company, result, run_id, st, cidx):
         desc = j.description if j.description is not None else (ex["description"] if ex else "")
         cls = classify(j.title, desc or "", j.department if not li_source else "", j.employment_type, j.extra_flags)
         geo = us_status(j.location)
+        if geo != "us" and FOREIGN_TITLE.search(j.title or ""): geo = "non_us"   # German/French/etc. internship titles with no US location
         is_us = 1 if geo == "us" else 0 if geo == "non_us" else None
         # unknown location: trust the company's HQ (job may say "Remote" / nothing); LinkedIn search is already US-filtered
         us_ok = (is_us == 1) or (is_us is None and (company.get("is_us", 1) or li_source))
+        degree = degree_level(j.title, desc or "")
+        if not cls["excluded"]:
+            cls["relevance"] = profile_adjust(cls["relevance"], j.title, desc or "", degree, company.get("category") if not li_source else None)
         keep = (not cls["excluded"]) and (not st["us_only"] or us_ok) and (
             (cls["is_intern"] and cls["relevance"] >= st["store_min_relevance_intern"]) or
             (st["track_newgrad"] and cls["is_newgrad"] and cls["relevance"] >= st["store_min_relevance_intern"]) or
             (st["track_fulltime"] and cls["relevance"] >= st["store_min_relevance_fulltime"]))
-        degree = degree_level(j.title, desc or "")
         target_cid = cid
         if li_source:
             # attribute LinkedIn search hits to a tracked company when the name matches

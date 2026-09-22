@@ -93,6 +93,40 @@ def _hits(text, groups=GROUP_PAT):
         if matched: out[g] = matched
     return out
 
+# ---------- candidate profile (config/profile.json) ----------
+_profile = None
+def profile():
+    global _profile
+    if _profile is None:
+        import json
+        from .config import CONFIG
+        p = CONFIG / "profile.json"
+        try: prof = json.loads(p.read_text()) if p.exists() else {}
+        except Exception: prof = {}
+        prof["_core_rx"] = [re.compile(x, re.I) for x in (prof.get("core_fit") or {}).get("patterns", [])]
+        prof["_pen_rx"] = [re.compile(x, re.I) for x in (prof.get("penalty") or {}).get("patterns", [])]
+        prof["_core_w"] = float((prof.get("core_fit") or {}).get("_weight", 0)); prof["_pen_w"] = float((prof.get("penalty") or {}).get("_weight", 0))
+        _profile = prof
+    return _profile
+
+def profile_adjust(base_relevance, title, description="", degree="any", category=None):
+    """Re-weights a base relevance (0-100) for this candidate: core-fit keywords up, off-profile keywords down,
+    degree-level fit, target vs expired terms, and a small company-category bonus. Returns int 0-100."""
+    prof = profile()
+    if not prof: return base_relevance
+    tl = (title or "").lower(); dl = (description or "")[:8000].lower()
+    core_t = sum(1 for rx in prof["_core_rx"] if rx.search(tl)); core_d = sum(1 for rx in prof["_core_rx"] if rx.search(dl))
+    pen_t = sum(1 for rx in prof["_pen_rx"] if rx.search(tl)); pen_d = sum(1 for rx in prof["_pen_rx"] if rx.search(dl))
+    score = float(base_relevance)
+    score += prof["_core_w"] * min(core_t, 3) + prof["_core_w"] * 0.35 * min(core_d, 6)
+    score += prof["_pen_w"] * min(pen_t, 2) + prof["_pen_w"] * 0.2 * min(pen_d, 4)
+    if core_t == 0 and core_d == 0 and pen_t: score *= 0.5
+    score *= float((prof.get("degree_multiplier") or {}).get(degree, 1.0))
+    if any(t in tl for t in prof.get("expired_terms", [])): score *= 0.3
+    elif any(t in tl for t in prof.get("target_terms", [])): score += 5
+    if category: score += float((prof.get("category_bonus") or {}).get(category, 0))
+    return int(max(0, min(100, round(score))))
+
 def classify(title, description="", department="", employment_type="", extra_flags=None):
     """Returns dict(is_intern, is_newgrad, relevance(0-100), keywords(list), excluded(bool), reason)."""
     title = title or ""

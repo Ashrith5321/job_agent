@@ -67,6 +67,19 @@ def cmd_scrape(a):
     from .runner import run
     run(kind=a.kind, limit=a.limit, only=a.only, linkcheck=not a.no_linkcheck, notify=not a.no_notify, workers=a.workers, discover=not a.no_discover)
 
+def cmd_rescore(a):
+    """Recompute relevance/degree for every stored job using the current scoring rules + config/profile.json."""
+    from .scoring import classify, degree_level, profile_adjust
+    conn = connect(); n = 0; changed = 0
+    for j in rows(conn, "SELECT j.id, j.title, j.description, j.department, j.employment_type, j.relevance, j.source, c.category FROM jobs j JOIN companies c ON c.id=j.company_id WHERE j.status IN ('open','closed')"):
+        cls = classify(j["title"], j["description"] or "", j["department"] if j["source"] not in ("linkedin", "linkedin_search", "handshake") else "", j["employment_type"])
+        deg = degree_level(j["title"], j["description"] or "")
+        rel = 0 if cls["excluded"] else profile_adjust(cls["relevance"], j["title"], j["description"] or "", deg, j["category"] if j["source"] not in ("linkedin_search", "handshake") else None)
+        conn.execute("UPDATE jobs SET relevance=?, degree=?, keywords=? WHERE id=?", (rel, deg, json.dumps(cls["keywords"]), j["id"])); n += 1
+        if rel != j["relevance"]: changed += 1
+    conn.commit(); print(f"rescored {n} jobs ({changed} changed)")
+    for r in rows(conn, "SELECT CASE WHEN relevance>=70 THEN '70+' WHEN relevance>=50 THEN '50-69' WHEN relevance>=30 THEN '30-49' ELSE '<30' END b, COUNT(*) n FROM jobs WHERE status='open' GROUP BY b ORDER BY b DESC"): print(f"  {r['b']:6} {r['n']}")
+
 def cmd_contacts(a):
     from .contacts import run_contacts, pick_companies
     from .http import default_http
@@ -133,6 +146,7 @@ def main(argv=None):
     x = sp.add_parser("init", help="load seed + registry into DB"); x.add_argument("--prune", action="store_true", help="delete seed companies not in seed files"); x.set_defaults(f=cmd_init)
     x = sp.add_parser("probe", help="discover ATS boards"); x.add_argument("--all", action="store_true"); x.add_argument("--only"); x.add_argument("--limit", type=int); x.add_argument("--workers", type=int, default=12); x.add_argument("-v", "--verbose", action="store_true"); x.set_defaults(f=cmd_probe)
     x = sp.add_parser("scrape", help="run a scrape"); x.add_argument("--limit", type=int); x.add_argument("--only"); x.add_argument("--workers", type=int); x.add_argument("--no-linkcheck", action="store_true"); x.add_argument("--no-notify", action="store_true"); x.add_argument("--kind", default="manual"); x.add_argument("--no-discover", action="store_true"); x.set_defaults(f=cmd_scrape)
+    sp.add_parser("rescore", help="re-apply scoring rules + profile.json to stored jobs").set_defaults(f=cmd_rescore)
     x = sp.add_parser("contacts", help="find recruiter / hiring-manager contacts (public sources)"); x.add_argument("--only"); x.add_argument("--limit", type=int, default=30); x.add_argument("--force", action="store_true"); x.add_argument("--delay", type=float, default=2.0); x.set_defaults(f=cmd_contacts)
     x = sp.add_parser("discover", help="find new companies (YC, VC portfolios) and activate promising ones"); x.add_argument("--homepages", type=int, default=60); x.add_argument("--probe", type=int, default=40); x.add_argument("--no-vc", action="store_true"); x.add_argument("--no-promote", action="store_true"); x.add_argument("--promote-only", action="store_true"); x.set_defaults(f=cmd_discover)
     x = sp.add_parser("linkcheck"); x.add_argument("--limit", type=int, default=500); x.set_defaults(f=cmd_linkcheck)
